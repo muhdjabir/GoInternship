@@ -8,7 +8,7 @@ import (
 
 func main() {
 	router := gin.Default()
-	fmt.Println("Server is listening")
+	fmt.Println("Server is listening at PORT:8080")
 	router.GET("/", GetUser)
-	router.Run("localhost:8080")
+	router.Run("0.0.0.0:8080")
 }
