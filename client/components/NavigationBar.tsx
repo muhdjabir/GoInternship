@@ -76,15 +76,26 @@ export default function NavigationBar() {
                     GoInternship
                 </Typography>
                 <div className="hidden lg:block">{navList}</div>
-                <Link href="/login">
-                    <Button
-                        variant="gradient"
-                        size="sm"
-                        className="hidden lg:inline-block"
-                    >
-                        <span>Log in</span>
-                    </Button>
-                </Link>
+                <div>
+                    <Link href="/login">
+                        <Button
+                            variant="outlined"
+                            size="sm"
+                            className="hidden lg:inline-block mr-5 border-teal-400 text-teal-400"
+                        >
+                            <span>Log in</span>
+                        </Button>
+                    </Link>
+                    <Link href="/signup">
+                        <Button
+                            variant="filled"
+                            size="sm"
+                            className="hidden lg:inline-block bg-teal-400"
+                        >
+                            <span>Join us</span>
+                        </Button>
+                    </Link>
+                </div>
                 <IconButton
                     variant="text"
                     className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -126,16 +137,28 @@ export default function NavigationBar() {
             <Collapse open={openNav}>
                 <div className="container mx-auto">
                     {navList}
-                    <Link href="/login">
-                        <Button
-                            variant="gradient"
-                            size="sm"
-                            fullWidth
-                            className="mb-2"
-                        >
-                            <span>Log in</span>
-                        </Button>
-                    </Link>
+                    <div>
+                        <Link href="/login">
+                            <Button
+                                variant="outlined"
+                                size="sm"
+                                fullWidth
+                                className="mb-2 border-teal-400 text-teal-400"
+                            >
+                                <span>Log in</span>
+                            </Button>
+                        </Link>
+                        <Link href="/signup">
+                            <Button
+                                variant="filled"
+                                size="sm"
+                                fullWidth
+                                className="mb-2 bg-teal-400"
+                            >
+                                <span>Join us</span>
+                            </Button>
+                        </Link>
+                    </div>
                 </div>
             </Collapse>
         </Navbar>

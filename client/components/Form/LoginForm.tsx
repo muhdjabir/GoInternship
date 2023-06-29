@@ -1,3 +1,5 @@
+"use client";
+
 import {
     Card,
     Input,
@@ -22,11 +24,13 @@ const LoginForm = () => {
                     <Input size="lg" label="Email" />
                     <Input type="password" size="lg" label="Password" />
                 </div>
-                <Button className="mt-6 " fullWidth>
+                <Button className="mt-6 bg-teal-400" fullWidth>
                     Login
                 </Button>
                 <Link href="/signup">
-                    <p className="text-blue-400">Dont have an account?</p>
+                    <p className="text-blue-400 hover:underline hover:underline-offset-1">
+                        Dont have an account?
+                    </p>
                 </Link>
             </form>
         </Card>
