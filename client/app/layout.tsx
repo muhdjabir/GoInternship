@@ -1,14 +1,15 @@
 "use client";
 
-import NavigationBar from "@/components/NavigationBar";
+import NavigationBar from "@/components/navigation/NavigationBar";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import Footer from "@/components/navigation/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
     title: "GoInternship",
-    description: "Your internships all in one",
+    description: "Your internships all in one place",
 };
 
 export default function RootLayout({
@@ -21,6 +22,7 @@ export default function RootLayout({
             <body className={`${inter.className} bg-white`}>
                 <NavigationBar />
                 {children}
+                <Footer />
             </body>
         </html>
     );
