@@ -1,7 +1,6 @@
 package database
 
 import (
-	"backend/models"
 	"fmt"
 	"os"
 
@@ -26,6 +25,4 @@ func Connect() {
 	} else {
 		fmt.Println("Successfully connected to the database")
 	}
-	fmt.Println("running migrations")
-	Database.AutoMigrate(&models.User{})
 }
