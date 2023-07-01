@@ -13,9 +13,10 @@ import (
 
 type User struct {
 	gorm.Model
-	Username string `gorm:"size:255;not null;unique" json:"username"`
-	Email    string `gorm:"size:255;not null;unique" json:"email"`
-	Password string `gorm:"size:255,not null;" json:"password"`
+	Username  string `gorm:"size:255;not null;unique" json:"username"`
+	Email     string `gorm:"size:255;not null;unique" json:"email"`
+	Password  string `gorm:"size:255,not null;" json:"password"`
+	Resources []Resource
 }
 
 func GetUserByID(uid uint) (User, error) {
@@ -23,7 +24,7 @@ func GetUserByID(uid uint) (User, error) {
 	var u User
 
 	if err := database.Database.First(&u, uid).Error; err != nil {
-		return u, errors.New("User not found!")
+		return u, errors.New("User not found")
 	}
 
 	u.PrepareGive()
@@ -69,8 +70,7 @@ func LoginCheck(email string, password string) (string, error) {
 }
 
 func (u *User) SaveUser() (*User, error) {
-	var err error
-	err = database.Database.Create(&u).Error
+	err := database.Database.Create(&u).Error
 	if err != nil {
 		return &User{}, err
 	}

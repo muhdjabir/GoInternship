@@ -20,6 +20,7 @@ func loadDatabase() {
 	database.Connect()
 	fmt.Println("Running Migrations")
 	database.Database.AutoMigrate(&models.User{})
+	database.Database.AutoMigrate(&models.Resource{})
 }
 
 func setRoutes() {
@@ -38,5 +39,8 @@ func setRoutes() {
 	protected := router.Group("/api/admin")
 	protected.Use(middlewares.JwtAuthMiddleware())
 	protected.GET("/user", controllers.CurrentUser)
+	protected.POST("/resource", controllers.CreateResource)
+	protected.GET("/resource", controllers.GetAllResources)
+	protected.GET("/resource/:id", controllers.GetResource)
 	router.Run("0.0.0.0:8080")
 }
