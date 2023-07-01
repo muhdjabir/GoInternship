@@ -3,6 +3,7 @@ package models
 import (
 	"backend/database"
 	"backend/utils/token"
+	"errors"
 	"html"
 	"strings"
 
@@ -15,6 +16,24 @@ type User struct {
 	Username string `gorm:"size:255;not null;unique" json:"username"`
 	Email    string `gorm:"size:255;not null;unique" json:"email"`
 	Password string `gorm:"size:255,not null;" json:"password"`
+}
+
+func GetUserByID(uid uint) (User, error) {
+
+	var u User
+
+	if err := database.Database.First(&u, uid).Error; err != nil {
+		return u, errors.New("User not found!")
+	}
+
+	u.PrepareGive()
+
+	return u, nil
+
+}
+
+func (u *User) PrepareGive() {
+	u.Password = ""
 }
 
 func VerifyPassword(password, hashedPassword string) error {
