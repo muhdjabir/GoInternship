@@ -19,8 +19,7 @@ func main() {
 func loadDatabase() {
 	database.Connect()
 	fmt.Println("Running Migrations")
-	database.Database.AutoMigrate(&models.User{})
-	database.Database.AutoMigrate(&models.Resource{})
+	database.Database.AutoMigrate(&models.User{}, &models.Resource{}, &models.Company{})
 }
 
 func setRoutes() {
@@ -39,10 +38,26 @@ func setRoutes() {
 	protected := router.Group("/api/admin")
 	protected.Use(middlewares.JwtAuthMiddleware())
 	protected.GET("/user", routes.CurrentUser)
+
+	// Resources Routes
 	protected.GET("/resource", routes.GetAllResources)
 	protected.GET("/resource/:id", routes.GetResource)
 	protected.POST("/resource", routes.CreateResource)
 	protected.DELETE("/resource/:id", routes.DeleteResource)
 	protected.PATCH("/resource/:id", routes.UpdateResource)
+
+	// Company Routes
+	protected.GET("/company", routes.GetAllCompanies)
+	protected.GET("/company/:id", routes.GetCompany)
+	protected.POST("/company", routes.CreateCompany)
+	protected.DELETE("/company/:id", routes.DeleteCompany)
+	protected.PATCH("/company/:id", routes.UpdateCompany)
+
+	// Application Routes
+	protected.GET("/application", routes.GetAllApplications)
+	protected.GET("/application/:id", routes.GetApplication)
+	protected.POST("/application", routes.CreateApplication)
+	protected.DELETE("/application/:id", routes.DeleteApplication)
+	protected.PATCH("/application/:id", routes.UpdateApplication)
 	router.Run("0.0.0.0:8080")
 }
