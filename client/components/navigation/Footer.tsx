@@ -1,8 +1,8 @@
 import { Typography, IconButton } from "@material-tailwind/react";
-// import LinkedInIcon from "@mui/icons-material/LinkedIn";
-// import GitHubIcon from "@mui/icons-material/GitHub";
-// import ArticleIcon from "@mui/icons-material/Article";
-// import WebIcon from "@mui/icons-material/Web";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import ArticleIcon from "@mui/icons-material/Article";
+import WebIcon from "@mui/icons-material/Web";
 
 const Footer = () => {
     return (
@@ -12,7 +12,7 @@ const Footer = () => {
             </Typography>
             <ul className="flex flex-wrap items-center gap-y-2 gap-x-8 mr-10">
                 <li>
-                    {/* <Typography
+                    <Typography
                         as="a"
                         href="https://www.linkedin.com/in/muhd-jabir-bja/"
                         color="blue-gray"
@@ -20,10 +20,7 @@ const Footer = () => {
                     >
                         <LinkedInIcon />
                         Linkedin
-                    </Typography> */}
-                    <IconButton className="bg-[#ea4335] rounded hover:shadow-[#ea4335]/20 focus:shadow-[#ea4335]/20 active:shadow-[#ea4335]/10">
-                        <i className="fab fa-google text-lg" />
-                    </IconButton>
+                    </Typography>
                 </li>
                 <li>
                     <Typography
@@ -32,7 +29,7 @@ const Footer = () => {
                         color="blue-gray"
                         className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
                     >
-                        {/* <GitHubIcon /> */}
+                        <GitHubIcon />
                         GitHub
                     </Typography>
                 </li>
@@ -43,7 +40,7 @@ const Footer = () => {
                         color="blue-gray"
                         className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
                     >
-                        {/* <ArticleIcon /> */}
+                        <ArticleIcon />
                         Resume
                     </Typography>
                 </li>
@@ -54,7 +51,7 @@ const Footer = () => {
                         color="blue-gray"
                         className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
                     >
-                        {/* <WebIcon /> */}
+                        <WebIcon />
                         Disctimeo
                     </Typography>
                 </li>
