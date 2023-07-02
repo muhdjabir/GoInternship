@@ -32,6 +32,16 @@ export default function NavigationBar() {
                     Dashboard
                 </Typography>
             </Link>
+            <Link href="/companies">
+                <Typography
+                    as="li"
+                    variant="small"
+                    color="blue-gray"
+                    className="p-1 font-normal"
+                >
+                    Companies
+                </Typography>
+            </Link>
             <Link href="/applications">
                 <Typography
                     as="li"
