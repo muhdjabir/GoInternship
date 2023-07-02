@@ -1,10 +1,10 @@
 package main
 
 import (
-	"backend/controllers"
 	"backend/database"
 	"backend/middlewares"
 	"backend/models"
+	"backend/routes"
 	"fmt"
 	"net/http"
 
@@ -32,15 +32,17 @@ func setRoutes() {
 	public.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"message": "Welcome to GoInternship Golang Web App"})
 	})
-	public.POST("/register", controllers.Register)
-	public.POST("/login", controllers.Login)
+	public.POST("/register", routes.Register)
+	public.POST("/login", routes.Login)
 
 	// Protected Routes
 	protected := router.Group("/api/admin")
 	protected.Use(middlewares.JwtAuthMiddleware())
-	protected.GET("/user", controllers.CurrentUser)
-	protected.POST("/resource", controllers.CreateResource)
-	protected.GET("/resource", controllers.GetAllResources)
-	protected.GET("/resource/:id", controllers.GetResource)
+	protected.GET("/user", routes.CurrentUser)
+	protected.GET("/resource", routes.GetAllResources)
+	protected.GET("/resource/:id", routes.GetResource)
+	protected.POST("/resource", routes.CreateResource)
+	protected.DELETE("/resource/:id", routes.DeleteResource)
+	protected.PATCH("/resource/:id", routes.UpdateResource)
 	router.Run("0.0.0.0:8080")
 }

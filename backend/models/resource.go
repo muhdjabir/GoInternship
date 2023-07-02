@@ -43,5 +43,24 @@ func GetResourceByID(resourceid int) (Resource, error) {
 	}
 
 	return resource, nil
+}
 
+func DeleteResourceByID(resourceid int) (Resource, error) {
+	var resource Resource
+
+	if err := database.Database.Delete(&Resource{}, resourceid).Error; err != nil {
+		return resource, errors.New(("Resource not found"))
+	}
+	return resource, nil
+}
+
+func UpdateResourceByID(resource Resource, resourceid int) (Resource, error) {
+	var updatedResource Resource
+	if err := database.Database.First(&updatedResource, resourceid).Error; err != nil {
+		return updatedResource, errors.New("Resource not found")
+	}
+	if err := database.Database.Model(&updatedResource).Updates(resource).Error; err != nil {
+		return updatedResource, err
+	}
+	return updatedResource, nil
 }
