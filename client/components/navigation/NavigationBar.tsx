@@ -92,7 +92,7 @@ export default function NavigationBar() {
                             size="sm"
                             className="hidden lg:inline-block bg-teal-400"
                         >
-                            <span>Join us</span>
+                            <span>Register</span>
                         </Button>
                     </Link>
                 </div>
@@ -155,7 +155,7 @@ export default function NavigationBar() {
                                 fullWidth
                                 className="mb-2 bg-teal-400"
                             >
-                                <span>Join us</span>
+                                <span>Register</span>
                             </Button>
                         </Link>
                     </div>
