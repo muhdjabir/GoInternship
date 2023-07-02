@@ -2,6 +2,7 @@
 
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function SignupForm() {
     return (
@@ -10,7 +11,14 @@ export default function SignupForm() {
             color="transparent"
             shadow={false}
         >
-            <Typography variant="h4" color="blue-gray">
+            <Image
+                src="/gointernship_logo.svg"
+                alt="Logo"
+                width={148}
+                height={148}
+                className="mx-auto mb-5"
+            />
+            <Typography variant="h4" color="blue-gray" className="text-center">
                 Create an account
             </Typography>
             <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96 mx-auto">
