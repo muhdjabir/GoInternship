@@ -25,6 +25,21 @@ func GetAllCompanies(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Companies Retrieved", "companies": companies})
 }
 
+func GetUserCompanies(c *gin.Context) {
+	idparam := c.Param("userid")
+	user_id, err := strconv.Atoi(idparam)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	companies, err := models.GetCompaniesByUID(user_id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "success", "company": companies})
+}
+
 func CreateCompany(c *gin.Context) {
 	var input CompanyInput
 
@@ -51,7 +66,7 @@ func CreateCompany(c *gin.Context) {
 }
 
 func GetCompany(c *gin.Context) {
-	idparam := c.Param("id")
+	idparam := c.Param("companyid")
 	company_id, err := strconv.Atoi(idparam)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -66,7 +81,7 @@ func GetCompany(c *gin.Context) {
 }
 
 func DeleteCompany(c *gin.Context) {
-	idparam := c.Param("id")
+	idparam := c.Param("companyid")
 	company_id, err := strconv.Atoi(idparam)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -81,7 +96,7 @@ func DeleteCompany(c *gin.Context) {
 }
 
 func UpdateCompany(c *gin.Context) {
-	idparam := c.Param("id")
+	idparam := c.Param("companyid")
 	company_id, err := strconv.Atoi(idparam)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

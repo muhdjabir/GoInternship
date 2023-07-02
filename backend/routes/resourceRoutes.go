@@ -49,7 +49,7 @@ func CreateResource(c *gin.Context) {
 }
 
 func GetResource(c *gin.Context) {
-	idparam := c.Param("id")
+	idparam := c.Param("resourceid")
 	resource_id, err := strconv.Atoi(idparam)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -64,7 +64,7 @@ func GetResource(c *gin.Context) {
 }
 
 func DeleteResource(c *gin.Context) {
-	idparam := c.Param("id")
+	idparam := c.Param("resourceid")
 	resource_id, err := strconv.Atoi(idparam)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -79,7 +79,7 @@ func DeleteResource(c *gin.Context) {
 }
 
 func UpdateResource(c *gin.Context) {
-	idparam := c.Param("id")
+	idparam := c.Param("resourceid")
 	resource_id, err := strconv.Atoi(idparam)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

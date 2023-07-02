@@ -55,7 +55,7 @@ func CreateApplication(c *gin.Context) {
 }
 
 func GetApplication(c *gin.Context) {
-	idparam := c.Param("id")
+	idparam := c.Param("applicationid")
 	application_id, err := strconv.Atoi(idparam)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -70,7 +70,7 @@ func GetApplication(c *gin.Context) {
 }
 
 func DeleteApplication(c *gin.Context) {
-	idparam := c.Param("id")
+	idparam := c.Param("applicationid")
 	application_id, err := strconv.Atoi(idparam)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -85,7 +85,7 @@ func DeleteApplication(c *gin.Context) {
 }
 
 func UpdateApplication(c *gin.Context) {
-	idparam := c.Param("id")
+	idparam := c.Param("applicationid")
 	application_id, err := strconv.Atoi(idparam)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

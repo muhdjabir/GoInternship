@@ -41,23 +41,24 @@ func setRoutes() {
 
 	// Resources Routes
 	protected.GET("/resource", routes.GetAllResources)
-	protected.GET("/resource/:id", routes.GetResource)
+	protected.GET("/resource/:resourceid", routes.GetResource)
 	protected.POST("/resource", routes.CreateResource)
-	protected.DELETE("/resource/:id", routes.DeleteResource)
-	protected.PATCH("/resource/:id", routes.UpdateResource)
+	protected.DELETE("/resource/:resourceid", routes.DeleteResource)
+	protected.PATCH("/resource/:resourceid", routes.UpdateResource)
 
 	// Company Routes
 	protected.GET("/company", routes.GetAllCompanies)
-	protected.GET("/company/:id", routes.GetCompany)
+	protected.GET("/company/:companyid", routes.GetCompany)
+	protected.GET("/company/user/:userid", routes.GetUserCompanies)
 	protected.POST("/company", routes.CreateCompany)
-	protected.DELETE("/company/:id", routes.DeleteCompany)
-	protected.PATCH("/company/:id", routes.UpdateCompany)
+	protected.DELETE("/company/:companyid", routes.DeleteCompany)
+	protected.PATCH("/company/:companyid", routes.UpdateCompany)
 
 	// Application Routes
 	protected.GET("/application", routes.GetAllApplications)
-	protected.GET("/application/:id", routes.GetApplication)
+	protected.GET("/application/:applicationid", routes.GetApplication)
 	protected.POST("/application", routes.CreateApplication)
-	protected.DELETE("/application/:id", routes.DeleteApplication)
-	protected.PATCH("/application/:id", routes.UpdateApplication)
+	protected.DELETE("/application/:applicationid", routes.DeleteApplication)
+	protected.PATCH("/application/:applicationid", routes.UpdateApplication)
 	router.Run("0.0.0.0:8080")
 }

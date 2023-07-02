@@ -43,6 +43,12 @@ func GetCompanyByID(companyid int) (Company, error) {
 	return company, nil
 }
 
+func GetCompaniesByUID(userid int) ([]Company, error) {
+	var companies []Company
+	database.Database.Where("UserID = ?", userid).Find(&companies)
+	return companies, nil
+}
+
 func DeleteCompanyByID(companyid int) (Company, error) {
 	var company Company
 
