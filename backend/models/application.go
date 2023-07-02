@@ -45,6 +45,12 @@ func GetApplicationByID(applicationid int) (Application, error) {
 	return application, nil
 }
 
+func GetApplicationsByUID(userid int) ([]Application, error) {
+	var applications []Application
+	database.Database.Where("UserID = ?", userid).Find(&applications)
+	return applications, nil
+}
+
 func DeleteApplicationByID(applicationid int) (Application, error) {
 	var application Application
 

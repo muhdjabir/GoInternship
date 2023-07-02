@@ -24,6 +24,21 @@ func GetAllResources(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Resources Retrieved", "resources": resources})
 }
 
+func GetUserResources(c *gin.Context) {
+	idparam := c.Param("userid")
+	user_id, err := strconv.Atoi(idparam)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	resources, err := models.GetResourcesByUID(user_id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "success", "company": resources})
+}
+
 func CreateResource(c *gin.Context) {
 	var input ResourceInput
 

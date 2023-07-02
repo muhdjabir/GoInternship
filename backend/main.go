@@ -42,6 +42,7 @@ func setRoutes() {
 	// Resources Routes
 	protected.GET("/resource", routes.GetAllResources)
 	protected.GET("/resource/:resourceid", routes.GetResource)
+	protected.GET("/resource/user/:userid", routes.GetUserResources)
 	protected.POST("/resource", routes.CreateResource)
 	protected.DELETE("/resource/:resourceid", routes.DeleteResource)
 	protected.PATCH("/resource/:resourceid", routes.UpdateResource)
@@ -57,6 +58,7 @@ func setRoutes() {
 	// Application Routes
 	protected.GET("/application", routes.GetAllApplications)
 	protected.GET("/application/:applicationid", routes.GetApplication)
+	protected.GET("/application/user/:userid", routes.GetUserApplications)
 	protected.POST("/application", routes.CreateApplication)
 	protected.DELETE("/application/:applicationid", routes.DeleteApplication)
 	protected.PATCH("/application/:applicationid", routes.UpdateApplication)

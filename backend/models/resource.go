@@ -34,6 +34,12 @@ func GetResources() ([]Resource, error) {
 	return resources, nil
 }
 
+func GetResourcesByUID(userid int) ([]Resource, error) {
+	var resources []Resource
+	database.Database.Where("UserID = ?", userid).Find(&resources)
+	return resources, nil
+}
+
 func GetResourceByID(resourceid int) (Resource, error) {
 
 	var resource Resource
