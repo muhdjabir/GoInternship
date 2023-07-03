@@ -13,11 +13,11 @@ const Hero = () => {
                     <h1 className="md:text-4xl sm:text-3xl text-2xl font-poppins py-2 text-left border-b-8 border-teal-400">
                         Track all your applications in one place
                     </h1>
-                    <p className="text-2xl font-montserrat text-left text-darkgrey font-normal">
-                        Centralise your Internship Grind and learn from the
+                    <p className="text-2xl font-montserrat text-left text-gray-500 font-normal">
+                        Centralise your Internship grind and learn from the
                         community around you
                     </p>
-                    <div className="mt-0">
+                    <div>
                         <Link href="/signup">
                             <Button
                                 variant="filled"
