@@ -11,12 +11,13 @@ export function Searchbar({
     setValue: (value: string) => void;
 }) {
     return (
-        <div>
+        <div className="grow">
             <Input
                 type="search"
+                color="teal"
                 label={label}
                 icon={<SearchIcon />}
-                onChange={(e) => console.log(e.target.value)}
+                onChange={(e) => setValue(e.target.value)}
             />
         </div>
     );
