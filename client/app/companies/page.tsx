@@ -7,6 +7,59 @@ import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import Modal from "@/components/cards/Modal";
 import AddCompanyCard from "./AddCompanyCard";
 
+type Company = {
+    id: number;
+    name: String;
+    industry: String;
+    description: String;
+    url: String;
+};
+
+const companies: Company[] = [
+    {
+        id: 1,
+        name: "Trilogy Technologies",
+        industry: "Research and Development",
+        description: "Test Company 1",
+        url: "nus.edu.sg",
+    },
+    {
+        id: 2,
+        name: "Amazon",
+        industry: "Ecommerce",
+        description: "Test Company 2",
+        url: "nus.edu.sg",
+    },
+    {
+        id: 3,
+        name: "Meta",
+        industry: "IT Services",
+        description: "Test Company 3",
+        url: "nus.edu.sg",
+    },
+    {
+        id: 4,
+        name: "Shopee",
+        industry: "IT Services",
+        description: "Test Company 3",
+        url: "nus.edu.sg",
+    },
+    {
+        id: 5,
+        name: "Grab",
+        industry: "IT Services",
+        description: "Test Company 3",
+        url: "nus.edu.sg",
+    },
+    {
+        id: 6,
+        name: "Bytedance",
+        industry: "IT Services",
+        description: "Test Company 3",
+        url: "nus.edu.sg",
+    },
+];
+
 export default function Home() {
     const [search, setSearch] = useState<string>("");
     const [open, setOpen] = useState<boolean>(false);
@@ -28,6 +81,12 @@ export default function Home() {
                 </Button>
             </div>
             <AddCompanyCard open={open} handleOpen={() => setOpen(!open)} />
+            <ul>
+                {companies &&
+                    companies.map((company) => (
+                        <li key={company.id}>{company.name}</li>
+                    ))}
+            </ul>
         </main>
     );
 }
