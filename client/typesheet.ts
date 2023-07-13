@@ -17,4 +17,16 @@ type SignupInput = {
     password: string;
 }
 
-export type {Company, LoginInput, SignupInput};
+
+type InitialState = {
+    value: AuthState;
+}
+
+type AuthState = {
+    isAuth: boolean;
+    username: string;
+    uid: number;
+    token: string;
+}
+
+export type {Company, LoginInput, SignupInput, InitialState, AuthState};

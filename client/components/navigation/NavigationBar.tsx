@@ -80,27 +80,42 @@ export default function NavigationBar() {
                     GoInternship
                 </Typography>
                 <div className="hidden lg:block">{navList}</div>
-                <div>
-                    <h1> User: {username} </h1>
-                    <Link href="/login">
-                        <Button
-                            variant="outlined"
-                            size="sm"
-                            className="hidden lg:inline-block mr-5 border-teal-400 text-teal-400"
-                        >
-                            <span>Log in</span>
-                        </Button>
-                    </Link>
-                    <Link href="/signup">
-                        <Button
-                            variant="filled"
-                            size="sm"
-                            className="hidden lg:inline-block bg-teal-400"
-                        >
-                            <span>Register</span>
-                        </Button>
-                    </Link>
-                </div>
+                {username && (
+                    <div className="flex">
+                        <h1> User: {username} </h1>
+                        <Link href="/signup">
+                            <Button
+                                variant="filled"
+                                size="sm"
+                                className="hidden lg:inline-block bg-teal-400"
+                            >
+                                <span>Logout</span>
+                            </Button>
+                        </Link>
+                    </div>
+                )}
+                {!username && (
+                    <div>
+                        <Link href="/login">
+                            <Button
+                                variant="outlined"
+                                size="sm"
+                                className="hidden lg:inline-block mr-5 border-teal-400 text-teal-400"
+                            >
+                                <span>Log in</span>
+                            </Button>
+                        </Link>
+                        <Link href="/signup">
+                            <Button
+                                variant="filled"
+                                size="sm"
+                                className="hidden lg:inline-block bg-teal-400"
+                            >
+                                <span>Register</span>
+                            </Button>
+                        </Link>
+                    </div>
+                )}
                 <IconButton
                     variant="text"
                     className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -142,28 +157,30 @@ export default function NavigationBar() {
             <Collapse open={openNav}>
                 <div className="container mx-auto">
                     {navList}
-                    <div>
-                        <Link href="/login">
-                            <Button
-                                variant="outlined"
-                                size="sm"
-                                fullWidth
-                                className="mb-2 border-teal-400 text-teal-400"
-                            >
-                                <span>Log in</span>
-                            </Button>
-                        </Link>
-                        <Link href="/signup">
-                            <Button
-                                variant="filled"
-                                size="sm"
-                                fullWidth
-                                className="mb-2 bg-teal-400"
-                            >
-                                <span>Register</span>
-                            </Button>
-                        </Link>
-                    </div>
+                    {username && (
+                        <div>
+                            <Link href="/login">
+                                <Button
+                                    variant="outlined"
+                                    size="sm"
+                                    fullWidth
+                                    className="mb-2 border-teal-400 text-teal-400"
+                                >
+                                    <span>Log in</span>
+                                </Button>
+                            </Link>
+                            <Link href="/signup">
+                                <Button
+                                    variant="filled"
+                                    size="sm"
+                                    fullWidth
+                                    className="mb-2 bg-teal-400"
+                                >
+                                    <span>Register</span>
+                                </Button>
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </Collapse>
         </Navbar>

@@ -1,21 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-type InitialState = {
-    value: AuthState;
-}
-
-type AuthState = {
-    isAuth: boolean;
-    username: string;
-    uid: string;
-    token: string;
-}
+import { AuthState, InitialState } from "@/typesheet";
 
 const initialState = {
     value: {
         isAuth: false,
         username: "",
-        uid: "",
+        uid: 0,
         token: "",
     } as AuthState
 } as InitialState
@@ -27,14 +17,9 @@ export const auth = createSlice({
         logOut: () => {
             return initialState;
         },
-        logIn: (state, action: PayloadAction<string>) => {
+        logIn: (state, action: PayloadAction<AuthState>) => {
             return {
-                value: {
-                    isAuth: true,
-                    username: action.payload,
-                    uid: "12312",
-                    token: "21312",
-                }
+                value: action.payload
             }
         }
     },

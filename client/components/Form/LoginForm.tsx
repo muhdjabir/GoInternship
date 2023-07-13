@@ -3,23 +3,25 @@
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import Link from "next/link";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
 import { useState } from "react";
-import { logIn } from "@/redux/features/authSlice";
+import { useLogin } from "@/hooks/useLogin";
+import { useRouter } from "next/navigation";
 
 const LoginForm = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-
-    const dispatch = useDispatch<AppDispatch>();
+    const { login, isLoading, error } = useLogin();
+    const router = useRouter();
 
     const handleLogin = async () => {
         console.log({
             email: email,
             password: password,
         });
-        dispatch(logIn(email));
+        await login(email, password);
+        if (!isLoading && !error) {
+            router.push("/dashboard");
+        }
     };
 
     return (
@@ -68,6 +70,11 @@ const LoginForm = () => {
                         Dont have an account?
                     </p>
                 </Link>
+                {error && (
+                    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-sm">
+                        {error}
+                    </div>
+                )}
             </form>
         </Card>
     );
