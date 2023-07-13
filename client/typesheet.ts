@@ -1,9 +1,20 @@
 type Company = {
     id: number;
-    name: String;
-    industry: String;
-    description: String;
-    url: String;
+    name: string;
+    industry: string;
+    description: string;
+    url: string;
 };
 
-export type {Company};
+type LoginInput = {
+    username: string;
+    password: string;
+}
+
+type SignupInput = {
+    username: string;
+    email: string;
+    password: string;
+}
+
+export type {Company, LoginInput, SignupInput};

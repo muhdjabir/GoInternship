@@ -50,10 +50,10 @@ func Register(c *gin.Context) {
 	_, err := u.SaveUser()
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Failed", "error": err.Error()})
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "registration success!"})
+	c.JSON(http.StatusOK, gin.H{"message": "Success"})
 }
 
 func Login(c *gin.Context) {
@@ -71,7 +71,7 @@ func Login(c *gin.Context) {
 	token, err := models.LoginCheck(u.Email, u.Password)
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "Username or password is incorrect."})
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Username or password is incorrect.", "error": err.Error()})
 		return
 	}
 
