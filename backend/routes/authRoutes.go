@@ -71,9 +71,9 @@ func Login(c *gin.Context) {
 	token, err := models.LoginCheck(u.Email, u.Password)
 
 	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Username or password is incorrect."})
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Username or password is incorrect."})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"token": token})
+	c.JSON(http.StatusOK, gin.H{"message": "Success", "token": token})
 }

@@ -9,9 +9,13 @@ import {
     Collapse,
 } from "@material-tailwind/react";
 import Link from "next/link";
+import { useAppSelector } from "@/redux/store";
 
 export default function NavigationBar() {
     const [openNav, setOpenNav] = useState(false);
+    const username = useAppSelector(
+        (state) => state.authReducer.value.username
+    );
 
     useEffect(() => {
         window.addEventListener(
@@ -77,6 +81,7 @@ export default function NavigationBar() {
                 </Typography>
                 <div className="hidden lg:block">{navList}</div>
                 <div>
+                    <h1> User: {username} </h1>
                     <Link href="/login">
                         <Button
                             variant="outlined"

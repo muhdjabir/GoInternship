@@ -1,10 +1,10 @@
 "use client";
 
 import NavigationBar from "@/components/navigation/NavigationBar";
+import Footer from "@/components/navigation/Footer";
 import "./globals.css";
 import { Inter } from "next/font/google";
-import Footer from "@/components/navigation/Footer";
-import { Providers } from "@/redux/provider";
+import { ReduxProvider } from "@/redux/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,11 +21,11 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${inter.className} bg-teal-50`}>
-                <Providers>
+                <ReduxProvider>
                     <NavigationBar />
                     {children}
                     <Footer />
-                </Providers>
+                </ReduxProvider>
             </body>
         </html>
     );
