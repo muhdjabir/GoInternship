@@ -4,16 +4,9 @@ import { useState } from "react";
 import { Searchbar } from "@/components/input/Searchbar";
 import { Button, CardHeader } from "@material-tailwind/react";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
-import Modal from "@/components/cards/Modal";
 import AddCompanyCard from "./AddCompanyCard";
-
-type Company = {
-    id: number;
-    name: String;
-    industry: String;
-    description: String;
-    url: String;
-};
+import { Company } from "@/typesheet";
+import CompanyTile from "./CompanyTile";
 
 const companies: Company[] = [
     {
@@ -80,13 +73,14 @@ export default function Home() {
                     Add Company <AddBusinessIcon />
                 </Button>
             </div>
+
             <AddCompanyCard open={open} handleOpen={() => setOpen(!open)} />
-            <ul>
+            <div className="mt-5 gap-4">
                 {companies &&
                     companies.map((company) => (
-                        <li key={company.id}>{company.name}</li>
+                        <CompanyTile company={company} key={company.id} />
                     ))}
-            </ul>
+            </div>
         </main>
     );
 }
