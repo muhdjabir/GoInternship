@@ -9,6 +9,7 @@ import {
     Collapse,
 } from "@material-tailwind/react";
 import Link from "next/link";
+import { useLogout } from "@/hooks/useLogout";
 import { useAppSelector } from "@/redux/store";
 
 export default function NavigationBar() {
@@ -16,6 +17,7 @@ export default function NavigationBar() {
     const username = useAppSelector(
         (state) => state.authReducer.value.username
     );
+    const { logout } = useLogout();
 
     useEffect(() => {
         window.addEventListener(
@@ -87,7 +89,9 @@ export default function NavigationBar() {
                             <Button
                                 variant="filled"
                                 size="sm"
-                                className="hidden lg:inline-block bg-teal-400"
+                                color="teal"
+                                className="hidden lg:inline-block"
+                                onClick={logout}
                             >
                                 <span>Logout</span>
                             </Button>
@@ -99,8 +103,9 @@ export default function NavigationBar() {
                         <Link href="/login">
                             <Button
                                 variant="outlined"
+                                color="teal"
                                 size="sm"
-                                className="hidden lg:inline-block mr-5 border-teal-400 text-teal-400"
+                                className="hidden lg:inline-block mr-5 text-teal-400"
                             >
                                 <span>Log in</span>
                             </Button>
@@ -108,8 +113,9 @@ export default function NavigationBar() {
                         <Link href="/signup">
                             <Button
                                 variant="filled"
+                                color="teal"
                                 size="sm"
-                                className="hidden lg:inline-block bg-teal-400"
+                                className="hidden lg:inline-block"
                             >
                                 <span>Register</span>
                             </Button>
@@ -157,14 +163,15 @@ export default function NavigationBar() {
             <Collapse open={openNav}>
                 <div className="container mx-auto">
                     {navList}
-                    {username && (
+                    {!username && (
                         <div>
                             <Link href="/login">
                                 <Button
                                     variant="outlined"
                                     size="sm"
+                                    color="teal"
                                     fullWidth
-                                    className="mb-2 border-teal-400 text-teal-400"
+                                    className="mb-2 text-teal-400"
                                 >
                                     <span>Log in</span>
                                 </Button>
@@ -173,10 +180,26 @@ export default function NavigationBar() {
                                 <Button
                                     variant="filled"
                                     size="sm"
+                                    color="teal"
                                     fullWidth
-                                    className="mb-2 bg-teal-400"
+                                    className="mb-2"
                                 >
                                     <span>Register</span>
+                                </Button>
+                            </Link>
+                        </div>
+                    )}
+                    {username && (
+                        <div>
+                            <Link href="/">
+                                <Button
+                                    variant="gradient"
+                                    size="sm"
+                                    color="teal"
+                                    fullWidth
+                                    onClick={logout}
+                                >
+                                    <span>Log out</span>
                                 </Button>
                             </Link>
                         </div>
