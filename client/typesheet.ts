@@ -18,11 +18,11 @@ type Company = {
 };
 
 type Resource = {
-    id: number;
+    ID: number;
     title: string;
     description: string;
     url: string;
-    uid: number;
+    Userid: number;
 }
 
 type LoginInput = {
