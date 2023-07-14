@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Searchbar } from "@/components/input/Searchbar";
-import { Button, CardHeader } from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import AddCompanyCard from "./AddCompanyCard";
 import { Company } from "@/typesheet";
@@ -53,7 +53,7 @@ const companies: Company[] = [
     },
 ];
 
-export default function Home() {
+export default function Company() {
     const [search, setSearch] = useState<string>("");
     const [open, setOpen] = useState<boolean>(false);
     return (

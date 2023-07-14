@@ -1,3 +1,14 @@
+type Application = {
+    id: number;
+    role: string;
+	status: string;
+	process: string[];
+	platform: string;
+	assessment: string;
+	uid: number;
+	cid: number;
+}
+
 type Company = {
     id: number;
     name: string;
@@ -5,6 +16,14 @@ type Company = {
     description: string;
     url: string;
 };
+
+type Resource = {
+    id: number;
+    title: string;
+    description: string;
+    url: string;
+    uid: number;
+}
 
 type LoginInput = {
     username: string;
@@ -29,4 +48,4 @@ type AuthState = {
     token: string;
 }
 
-export type {Company, LoginInput, SignupInput, InitialState, AuthState};
+export type {Company, Resource, LoginInput, SignupInput, InitialState, AuthState};

@@ -84,7 +84,7 @@ export default function NavigationBar() {
                 <div className="hidden lg:block">{navList}</div>
                 {username && (
                     <div className="flex">
-                        <h1> User: {username} </h1>
+                        <p className="mr-5 pt-1 text-md">{username}</p>
                         <Link href="/">
                             <Button
                                 variant="filled"
