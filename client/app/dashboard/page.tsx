@@ -1,9 +1,7 @@
-export default function Home() {
+export default function Dashboard() {
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-5">
-            <div className="z-10 w-full max-w-5xl items-center justify-between font-montserrat lg:flex">
-                <h1 className="text-2xl">Welcome to my Dashboard</h1>
-            </div>
+        <main className="min-h-screen px-5 py-5 lg:px-24 lg:pt-10">
+            <h1 className="text-2xl mb-5 text-center">Dashboard</h1>
         </main>
     );
 }
