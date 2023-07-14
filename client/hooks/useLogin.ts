@@ -3,6 +3,8 @@ import { logIn } from "@/redux/features/authSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { AuthState } from "@/typesheet";
+import { useRouter } from "next/navigation";
+
 
 // Login function for user authentication
 // Works by sending post request to api/auth/login to 
@@ -15,6 +17,7 @@ export const useLogin = () => {
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const dispatch = useDispatch<AppDispatch>();
+    const router = useRouter();
 
     const getUser = async (token: string) => {
         const response = await fetch(`http://127.0.0.1:8080/api/admin/user`, {
@@ -54,6 +57,7 @@ export const useLogin = () => {
         });
         // const response = await fetch(`http://127.0.0.1:8080/api/`);
         const json = await response.json();
+        console.log(response.ok)
 
         if (!response.ok) {
             setIsLoading(false);
@@ -68,6 +72,7 @@ export const useLogin = () => {
             const token = json.token;
             console.log(token);
             await getUser(token);
+            router.push("/dashboard");
         }
     }
     return { login, isLoading, error};

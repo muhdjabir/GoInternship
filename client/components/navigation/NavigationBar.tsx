@@ -85,7 +85,7 @@ export default function NavigationBar() {
                 {username && (
                     <div className="flex">
                         <h1> User: {username} </h1>
-                        <Link href="/signup">
+                        <Link href="/">
                             <Button
                                 variant="filled"
                                 size="sm"
