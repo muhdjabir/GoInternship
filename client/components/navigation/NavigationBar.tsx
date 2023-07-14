@@ -15,7 +15,7 @@ import { useAppSelector } from "@/redux/store";
 export default function NavigationBar() {
     const [openNav, setOpenNav] = useState(false);
     const username = useAppSelector(
-        (state) => state.authReducer.value.username
+        (state) => state.persistedReducer.auth.value.username
     );
     const { logout } = useLogout();
 

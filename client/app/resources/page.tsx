@@ -14,7 +14,9 @@ export default function Resource() {
     const [resources, setResources] = useState([]);
     const [search, setSearch] = useState<string>("");
     const [open, setOpen] = useState<boolean>(false);
-    const token = useAppSelector((state) => state.authReducer.value.token);
+    const token = useAppSelector(
+        (state) => state.persistedReducer.auth.value.token
+    );
 
     useEffect(() => {
         const fetchResource = async () => {
