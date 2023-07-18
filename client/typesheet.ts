@@ -15,6 +15,7 @@ type Company = {
     industry: string;
     description: string;
     url: string;
+    UserID: number;
 };
 
 type Resource = {

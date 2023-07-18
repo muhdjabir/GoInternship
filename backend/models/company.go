@@ -45,7 +45,7 @@ func GetCompanyByID(companyid int) (Company, error) {
 
 func GetCompaniesByUID(userid int) ([]Company, error) {
 	var companies []Company
-	database.Database.Where("UserID = ?", userid).Find(&companies)
+	database.Database.Where("user_id = ?", userid).Find(&companies)
 	return companies, nil
 }
 

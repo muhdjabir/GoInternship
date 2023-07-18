@@ -38,9 +38,13 @@ export default function ResourceTile({ resource }: { resource: Resource }) {
         <DataCard>
             <div className="p-4 col-span-5">
                 <h2 className="font-bold">{resource.title}</h2>
-                <h2 className="font-medium">
-                    Resource Link:{" "}
-                    <a target="__blank" href={resource.url}>
+                <h2 className="font-medium ">
+                    Resource Link:
+                    <a
+                        target="__blank"
+                        href={resource.url}
+                        className="hover:underline hover:underline-offset-2"
+                    >
                         {resource.url}
                     </a>
                 </h2>
