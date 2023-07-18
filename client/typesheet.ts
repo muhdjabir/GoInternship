@@ -23,6 +23,7 @@ type Resource = {
     description: string;
     url: string;
     Userid: number;
+    CreatedAt: string;
 }
 
 type LoginInput = {
