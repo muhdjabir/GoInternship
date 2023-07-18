@@ -13,57 +13,6 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { getCompanies } from "@/redux/features/companySlice";
 
-// const companies: Company[] = [
-//     {
-//         ID: 1,
-//         name: "Trilogy Technologies",
-//         industry: "Research and Development",
-//         description: "Test Company 1",
-//         url: "nus.edu.sg",
-//         UserID: 3,
-//     },
-//     {
-//         ID: 2,
-//         name: "Amazon",
-//         industry: "Ecommerce",
-//         description: "Test Company 2",
-//         url: "nus.edu.sg",
-//         UserID: 3,
-//     },
-//     {
-//         ID: 3,
-//         name: "Meta",
-//         industry: "IT Services",
-//         description: "Test Company 3",
-//         url: "nus.edu.sg",
-//         UserID: 3,
-//     },
-//     {
-//         ID: 4,
-//         name: "Shopee",
-//         industry: "IT Services",
-//         description: "Test Company 3",
-//         url: "nus.edu.sg",
-//         UserID: 3,
-//     },
-//     {
-//         ID: 5,
-//         name: "Grab",
-//         industry: "IT Services",
-//         description: "Test Company 3",
-//         url: "nus.edu.sg",
-//         UserID: 3,
-//     },
-//     {
-//         ID: 6,
-//         name: "Bytedance",
-//         industry: "IT Services",
-//         description: "Test Company 3",
-//         url: "nus.edu.sg",
-//         UserID: 3,
-//     },
-// ];
-
 export default function Company() {
     const [search, setSearch] = useState<string>("");
     const [open, setOpen] = useState<boolean>(false);
@@ -120,9 +69,16 @@ export default function Company() {
             <AddCompanyCard open={open} handleOpen={() => setOpen(!open)} />
             <div className="mt-5 gap-4">
                 {companies &&
-                    companies.map((company) => (
-                        <CompanyTile company={company} key={company.ID} />
-                    ))}
+                    companies
+                        .filter(
+                            (company) =>
+                                company.name.includes(search) ||
+                                company.description.includes(search) ||
+                                company.industry.includes(search)
+                        )
+                        .map((company) => (
+                            <CompanyTile company={company} key={company.ID} />
+                        ))}
             </div>
         </main>
     );
