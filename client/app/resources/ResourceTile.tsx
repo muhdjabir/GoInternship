@@ -39,7 +39,10 @@ export default function ResourceTile({ resource }: { resource: Resource }) {
             <div className="p-4 col-span-5">
                 <h2 className="font-bold">{resource.title}</h2>
                 <h2 className="font-medium">
-                    Resource Link: <a href={resource.url}>{resource.url}</a>
+                    Resource Link:{" "}
+                    <a target="__blank" href={resource.url}>
+                        {resource.url}
+                    </a>
                 </h2>
                 <h2>{resource.description}</h2>
             </div>

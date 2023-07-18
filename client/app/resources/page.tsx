@@ -68,9 +68,18 @@ export default function Resource() {
             <AddResourceCard open={open} handleOpen={() => setOpen(!open)} />
             <div className="mt-5 gap-4">
                 {resources &&
-                    resources.map((resource: Resource) => (
-                        <ResourceTile resource={resource} key={resource.ID} />
-                    ))}
+                    resources
+                        .filter(
+                            (resource) =>
+                                resource.title.includes(search) ||
+                                resource.description.includes(search)
+                        )
+                        .map((resource: Resource) => (
+                            <ResourceTile
+                                resource={resource}
+                                key={resource.ID}
+                            />
+                        ))}
             </div>
         </main>
     );
