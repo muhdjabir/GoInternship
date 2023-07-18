@@ -2,14 +2,11 @@
 
 import { useState } from "react";
 import Modal from "@/components/cards/Modal";
-import {
-    Button,
-    Textarea,
-    CardFooter,
-    Input,
-    Select,
-    Option,
-} from "@material-tailwind/react";
+import { Button, Textarea, CardFooter, Input } from "@material-tailwind/react";
+import { useAppSelector } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { createResource } from "@/redux/features/resourceSlice";
 
 export default function AddResourceCard({
     open,
@@ -21,9 +18,32 @@ export default function AddResourceCard({
     const [title, setTitle] = useState<String>("");
     const [description, setDescription] = useState<String>("");
     const [url, setUrl] = useState<String>("");
+    const dispatch = useDispatch<AppDispatch>();
+    const token = useAppSelector(
+        (state) => state.persistedReducer.auth.value.token
+    );
+    const uid = useAppSelector(
+        (state) => state.persistedReducer.auth.value.uid
+    );
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         console.log(title, url, description);
+        const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/resource`,
+            {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({ title, description, url, user_id: uid }),
+            }
+        );
+        const json = await response.json();
+
+        if (response.ok) {
+            dispatch(createResource(json.resource));
+            handleOpen();
+        }
     };
 
     return (

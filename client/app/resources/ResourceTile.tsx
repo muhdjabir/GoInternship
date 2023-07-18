@@ -28,7 +28,6 @@ export default function ResourceTile({ resource }: { resource: Resource }) {
             }
         );
         const json = await response.json();
-        console.log(response.ok);
 
         if (response.ok) {
             dispatch(deleteResource(resource.ID));
