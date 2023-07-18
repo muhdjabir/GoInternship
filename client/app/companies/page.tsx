@@ -3,8 +3,16 @@
 
 import { useState, useEffect } from "react";
 import { Searchbar } from "@/components/input/Searchbar";
-import { Button } from "@material-tailwind/react";
+import {
+    Button,
+    IconButton,
+    Menu,
+    MenuHandler,
+    MenuList,
+    MenuItem,
+} from "@material-tailwind/react";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
+import FilterListIcon from "@mui/icons-material/FilterList";
 import AddCompanyCard from "./AddCompanyCard";
 import { Company } from "@/typesheet";
 import CompanyTile from "./CompanyTile";
@@ -56,10 +64,27 @@ export default function Company() {
                     label="Search for your companies"
                     setValue={setSearch}
                 />
+
+                <Menu>
+                    <MenuHandler>
+                        <IconButton color="teal" variant="filled">
+                            <FilterListIcon />
+                        </IconButton>
+                    </MenuHandler>
+                    <MenuList>
+                        <MenuItem>Retail</MenuItem>
+                        <MenuItem>Healthcare</MenuItem>
+                        <MenuItem>Banking/Financial Services</MenuItem>
+                        <MenuItem>Government/Defense</MenuItem>
+                        <MenuItem>Research and Development</MenuItem>
+                        <MenuItem>IT Services</MenuItem>
+                    </MenuList>
+                </Menu>
                 <Button
                     variant="filled"
                     size="sm"
-                    className="lg:px-5 bg-teal-400"
+                    color="teal"
+                    className="lg:px-5"
                     onClick={() => setOpen(!open)}
                 >
                     Add Company <AddBusinessIcon />
