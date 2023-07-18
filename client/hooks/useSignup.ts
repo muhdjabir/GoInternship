@@ -14,7 +14,7 @@ export const useSignup = () => {
         setIsLoading(true);
         setError("");
 
-        const response = await fetch(`http://127.0.0.1:8080/api/register`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/register`, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({email, password, username})

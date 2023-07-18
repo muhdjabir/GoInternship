@@ -20,8 +20,9 @@ export default function Resource() {
 
     useEffect(() => {
         const fetchResource = async () => {
+            console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}`);
             const response = await fetch(
-                "http://127.0.0.1:8080/api/admin/resource",
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/resource`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
