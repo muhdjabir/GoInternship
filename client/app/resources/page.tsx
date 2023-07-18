@@ -9,13 +9,20 @@ import { Resource } from "@/typesheet";
 import { useAppSelector } from "@/redux/store";
 import ResourceTile from "./ResourceTile";
 import AddResourceCard from "./AddResourceCard";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { getResources } from "@/redux/features/resourceSlice";
 
 export default function Resource() {
-    const [resources, setResources] = useState([]);
+    // const [resources, setResources] = useState([]);
     const [search, setSearch] = useState<string>("");
     const [open, setOpen] = useState<boolean>(false);
+    const dispatch = useDispatch<AppDispatch>();
     const token = useAppSelector(
         (state) => state.persistedReducer.auth.value.token
+    );
+    const resources = useAppSelector(
+        (state) => state.persistedReducer.resource.value
     );
 
     useEffect(() => {
@@ -32,7 +39,8 @@ export default function Resource() {
             const json = await response.json();
             console.log(json.resources);
             if (response.ok) {
-                setResources(json.resources);
+                // setResources(json.resources);
+                dispatch(getResources(json.resources));
             }
         };
         fetchResource();
