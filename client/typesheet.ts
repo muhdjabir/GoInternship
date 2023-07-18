@@ -22,7 +22,7 @@ type Resource = {
     title: string;
     description: string;
     url: string;
-    Userid: number;
+    UserID: number;
     CreatedAt: string;
 }
 
@@ -49,4 +49,8 @@ type AuthState = {
     token: string;
 }
 
-export type {Company, Resource, LoginInput, SignupInput, InitialState, AuthState};
+type InitialResourceState = {
+    value: Resource[];
+}
+
+export type {Company, Resource, LoginInput, SignupInput, InitialState, AuthState, InitialResourceState};

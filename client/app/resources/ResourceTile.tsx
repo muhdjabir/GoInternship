@@ -1,8 +1,14 @@
 import DataCard from "@/components/cards/DataCard";
 import { Resource } from "@/typesheet";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import { IconButton } from "@material-tailwind/react";
+import { useAppSelector } from "@/redux/store";
 
 export default function ResourceTile({ resource }: { resource: Resource }) {
     const date = new Date(resource.CreatedAt);
+    const userid = useAppSelector(
+        (state) => state.persistedReducer.auth.value.uid
+    );
 
     return (
         <DataCard>
@@ -15,6 +21,11 @@ export default function ResourceTile({ resource }: { resource: Resource }) {
             </div>
             <div className="p-4 col-start-7 col-span-2">
                 <h2>Posted: {date.toDateString()}</h2>
+                {resource.UserID === userid && (
+                    <IconButton color="red" size="sm" className="">
+                        <DeleteForeverIcon />
+                    </IconButton>
+                )}
             </div>
         </DataCard>
     );
