@@ -2,6 +2,7 @@ import DataCard from "@/components/cards/DataCard";
 import { Chip, IconButton } from "@material-tailwind/react";
 import { Company } from "@/typesheet";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import Link from "next/link";
 
 export default function CompanyTile({ company }: { company: Company }) {
     return (
@@ -17,8 +18,8 @@ export default function CompanyTile({ company }: { company: Company }) {
                         className="max-w-[15rem]"
                     />
                 </h2>
-                <h2>
-                    Company Website:{" "}
+                <h2 className="font-medium">
+                    Company Portal:{" "}
                     <a
                         target="__blank"
                         href={company.url}
@@ -30,9 +31,11 @@ export default function CompanyTile({ company }: { company: Company }) {
                 <h2>{company.description}</h2>
             </div>
             <div className="col-start-8 my-auto mx-auto">
+                {/* <Link> */}
                 <IconButton variant="text" color="teal">
                     <ArrowForwardIosIcon />
                 </IconButton>
+                {/* </Link> */}
             </div>
         </DataCard>
     );

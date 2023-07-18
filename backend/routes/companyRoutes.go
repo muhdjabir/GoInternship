@@ -37,7 +37,7 @@ func GetUserCompanies(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"message": "success", "company": companies})
+	c.JSON(http.StatusOK, gin.H{"message": "success", "companies": companies})
 }
 
 func CreateCompany(c *gin.Context) {

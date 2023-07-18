@@ -1,5 +1,5 @@
 type Application = {
-    id: number;
+    ID: number;
     role: string;
 	status: string;
 	process: string[];
@@ -10,7 +10,7 @@ type Application = {
 }
 
 type Company = {
-    id: number;
+    ID: number;
     name: string;
     industry: string;
     description: string;
@@ -54,4 +54,8 @@ type InitialResourceState = {
     value: Resource[];
 }
 
-export type {Company, Resource, LoginInput, SignupInput, InitialState, AuthState, InitialResourceState};
+type InitialCompanyState = {
+    value: Company[];
+}
+
+export type {Company, Resource, LoginInput, SignupInput, InitialState, AuthState, InitialResourceState, InitialCompanyState};
