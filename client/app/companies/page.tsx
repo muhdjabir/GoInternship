@@ -3,18 +3,10 @@
 
 import { useState, useEffect } from "react";
 import { Searchbar } from "@/components/input/Searchbar";
-import {
-    Button,
-    IconButton,
-    Menu,
-    MenuHandler,
-    MenuList,
-    MenuItem,
-} from "@material-tailwind/react";
+import { Button } from "@material-tailwind/react";
 import CompanyTile from "./CompanyTile";
 import { Filter } from "@/components/input/Filter";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
-import FilterListIcon from "@mui/icons-material/FilterList";
 import AddCompanyCard from "./AddCompanyCard";
 import { Company } from "@/typesheet";
 import { useAppSelector } from "@/redux/store";
@@ -82,21 +74,6 @@ export default function Company() {
                     label="Filter by Industry"
                     options={options}
                 />
-                {/* <Menu>
-                    <MenuHandler>
-                        <IconButton color="teal" variant="filled">
-                            <FilterListIcon />
-                        </IconButton>
-                    </MenuHandler>
-                    <MenuList onChange={(event) => console.log(event.target)}>
-                        <MenuItem>Retail</MenuItem>
-                        <MenuItem>Healthcare</MenuItem>
-                        <MenuItem>Banking/Financial Services</MenuItem>
-                        <MenuItem>Government/Defense</MenuItem>
-                        <MenuItem>Research and Development</MenuItem>
-                        <MenuItem>IT Services</MenuItem>
-                    </MenuList>
-                </Menu> */}
                 <Button
                     variant="filled"
                     size="sm"

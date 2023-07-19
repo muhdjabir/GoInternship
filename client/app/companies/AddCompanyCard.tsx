@@ -10,6 +10,10 @@ import {
     Select,
     Option,
 } from "@material-tailwind/react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { useAppSelector } from "@/redux/store";
+import { createCompany } from "@/redux/features/companySlice";
 
 export default function AddCompanyCard({
     open,
@@ -22,9 +26,44 @@ export default function AddCompanyCard({
     const [industry, setIndustry] = useState<String>("");
     const [description, setDescription] = useState<String>("");
     const [url, setUrl] = useState<String>("");
+    const dispatch = useDispatch<AppDispatch>();
+    const token = useAppSelector(
+        (state) => state.persistedReducer.auth.value.token
+    );
+    const uid = useAppSelector(
+        (state) => state.persistedReducer.auth.value.uid
+    );
 
-    const handleSubmit = () => {
-        console.log(name, url, industry, description);
+    const valid = () => {
+        return (
+            name === "" || industry === "" || description === "" || url === ""
+        );
+    };
+
+    const handleSubmit = async () => {
+        console.log(name, industry, description, url);
+        const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/company`,
+            {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    name,
+                    industry,
+                    description,
+                    url,
+                    user_id: uid,
+                }),
+            }
+        );
+        const json = await response.json();
+
+        if (response.ok) {
+            dispatch(createCompany(json.company));
+            handleOpen();
+        }
     };
 
     return (
@@ -62,6 +101,7 @@ export default function AddCompanyCard({
                 <Button
                     variant="filled"
                     className="bg-teal-400"
+                    disabled={valid()}
                     onClick={handleSubmit}
                 >
                     Add
