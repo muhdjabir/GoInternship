@@ -14,6 +14,7 @@ type ApplicationInput struct {
 	Process    []string `json:"process" binding:"required"`
 	Platform   string   `json:"platform" binding:"required"`
 	Assessment string   `json:"assessment" binding:"required"`
+	Company    string   `json:"company" binding:"required"`
 	UserID     int      `json:"user_id" binding:"required"`
 	CompanyID  int      `json:"company_id" binding:"required"`
 }
@@ -42,6 +43,7 @@ func CreateApplication(c *gin.Context) {
 	application.Process = input.Process
 	application.Platform = input.Platform
 	application.Assessment = input.Assessment
+	application.Company = input.Company
 	application.UserID = input.UserID
 	application.CompanyID = input.CompanyID
 
@@ -121,6 +123,7 @@ func UpdateApplication(c *gin.Context) {
 	application.Process = input.Process
 	application.Platform = input.Platform
 	application.Assessment = input.Assessment
+	application.Company = input.Company
 	application.UserID = input.UserID
 	application.CompanyID = input.CompanyID
 

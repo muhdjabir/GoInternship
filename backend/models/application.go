@@ -15,6 +15,7 @@ type Application struct {
 	Process    []string `gorm:"not null;" json:"process"`
 	Platform   string   `gorm:"not null;" json:"platform"`
 	Assessment string   `gorm:"not null;" json:"assessment"`
+	Company    string   `gorm:"not null;" json:"company"`
 	UserID     int
 	CompanyID  int
 }
