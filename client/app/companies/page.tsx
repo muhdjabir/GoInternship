@@ -11,11 +11,12 @@ import {
     MenuList,
     MenuItem,
 } from "@material-tailwind/react";
+import CompanyTile from "./CompanyTile";
+import { Filter } from "@/components/input/Filter";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import AddCompanyCard from "./AddCompanyCard";
 import { Company } from "@/typesheet";
-import CompanyTile from "./CompanyTile";
 import { useAppSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
@@ -23,6 +24,7 @@ import { getCompanies } from "@/redux/features/companySlice";
 
 export default function Company() {
     const [search, setSearch] = useState<string>("");
+    // const [industry, setIndustry] = useState<string[]>([]);
     const [open, setOpen] = useState<boolean>(false);
     const dispatch = useDispatch<AppDispatch>();
     const uid = useAppSelector(
@@ -34,6 +36,15 @@ export default function Company() {
     const companies = useAppSelector(
         (state) => state.persistedReducer.company.value
     );
+
+    const options: string[] = [
+        "Retail",
+        "Healthcare",
+        "Banking/Financial Services",
+        "Government/Defense",
+        "Research and Development",
+        "IT Services",
+    ];
 
     useEffect(() => {
         const fetchCompany = async () => {
@@ -64,14 +75,18 @@ export default function Company() {
                     label="Search for your companies"
                     setValue={setSearch}
                 />
-
-                <Menu>
+                {/* <Filter
+                    setFilter={setIndustry}
+                    label="Filter by Industry"
+                    options={options}
+                /> */}
+                {/* <Menu>
                     <MenuHandler>
                         <IconButton color="teal" variant="filled">
                             <FilterListIcon />
                         </IconButton>
                     </MenuHandler>
-                    <MenuList>
+                    <MenuList onChange={(event) => console.log(event.target)}>
                         <MenuItem>Retail</MenuItem>
                         <MenuItem>Healthcare</MenuItem>
                         <MenuItem>Banking/Financial Services</MenuItem>
@@ -79,7 +94,7 @@ export default function Company() {
                         <MenuItem>Research and Development</MenuItem>
                         <MenuItem>IT Services</MenuItem>
                     </MenuList>
-                </Menu>
+                </Menu> */}
                 <Button
                     variant="filled"
                     size="sm"
