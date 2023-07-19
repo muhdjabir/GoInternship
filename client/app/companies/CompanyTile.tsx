@@ -3,8 +3,12 @@ import { Chip, IconButton } from "@material-tailwind/react";
 import { Company } from "@/typesheet";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Link from "next/link";
+import EditCompanyCard from "./EditCompanyCard";
+import { useState } from "react";
 
 export default function CompanyTile({ company }: { company: Company }) {
+    const [open, setOpen] = useState(true);
+
     return (
         <DataCard>
             <div className="p-4 col-span-5">
@@ -32,11 +36,20 @@ export default function CompanyTile({ company }: { company: Company }) {
             </div>
             <div className="col-start-8 my-auto mx-auto">
                 {/* <Link> */}
-                <IconButton variant="text" color="teal">
+                <IconButton
+                    variant="text"
+                    color="teal"
+                    onClick={() => setOpen(!open)}
+                >
                     <ArrowForwardIosIcon />
                 </IconButton>
                 {/* </Link> */}
             </div>
+            <EditCompanyCard
+                open={open}
+                handleOpen={() => setOpen(!open)}
+                company={company}
+            />
         </DataCard>
     );
 }

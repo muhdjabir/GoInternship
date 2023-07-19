@@ -10,7 +10,7 @@ import {
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { Autocomplete, TextField } from "@mui/material";
 
-export function Filter({
+export default function Filter({
     setFilter,
     filter,
     label,
@@ -33,6 +33,7 @@ export function Filter({
                 <div className="flex gap-2">
                     <Autocomplete
                         multiple
+                        fullWidth
                         id="tags-standard"
                         options={options}
                         getOptionLabel={(option) => option}

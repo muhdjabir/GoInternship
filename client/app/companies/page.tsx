@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Searchbar } from "@/components/input/Searchbar";
 import { Button } from "@material-tailwind/react";
 import CompanyTile from "./CompanyTile";
-import { Filter } from "@/components/input/Filter";
+import Filter from "@/components/input/Filter";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 import AddCompanyCard from "./AddCompanyCard";
 import { Company } from "@/typesheet";

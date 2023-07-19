@@ -26,8 +26,14 @@ export const company = createSlice({
                 value: [...state.value.filter((company) => company.ID !== action.payload)]
             }
         },
+        updateCompany: (state, action: PayloadAction<Company>) => {
+            return {
+                ...state,
+                value: [...state.value.filter((company) => company.ID !== action.payload.ID), action.payload]
+            }
+        }
     },
 });
 
-export const { getCompanies, createCompany, deleteCompany } = company.actions;
+export const { getCompanies, createCompany, deleteCompany, updateCompany } = company.actions;
 export default company.reducer;
