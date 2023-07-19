@@ -37,6 +37,7 @@ export default function AddCompanyCard({
             >
                 <Option value="Retail">Retail</Option>
                 <Option value="Healthcare">Healthcare</Option>
+                <Option value="Manufacturing">Manufacturing</Option>
                 <Option value="Banking/Financial Services">
                     Banking/Financial Services
                 </Option>

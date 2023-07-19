@@ -12,10 +12,12 @@ import { Autocomplete, TextField } from "@mui/material";
 
 export function Filter({
     setFilter,
+    filter,
     label,
     options,
 }: {
     setFilter: (value: string[]) => void;
+    filter: string[];
     label: string;
     options: string[];
 }) {
@@ -34,7 +36,7 @@ export function Filter({
                         id="tags-standard"
                         options={options}
                         getOptionLabel={(option) => option}
-                        defaultValue={[options[3]]}
+                        defaultValue={filter}
                         onChange={(event, value) => setFilter(value)}
                         renderInput={(params) => (
                             <TextField

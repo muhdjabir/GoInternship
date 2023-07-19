@@ -24,7 +24,7 @@ import { getCompanies } from "@/redux/features/companySlice";
 
 export default function Company() {
     const [search, setSearch] = useState<string>("");
-    // const [industry, setIndustry] = useState<string[]>([]);
+    const [industry, setIndustry] = useState<string[]>([]);
     const [open, setOpen] = useState<boolean>(false);
     const dispatch = useDispatch<AppDispatch>();
     const uid = useAppSelector(
@@ -44,6 +44,7 @@ export default function Company() {
         "Government/Defense",
         "Research and Development",
         "IT Services",
+        "Manufacturing",
     ];
 
     useEffect(() => {
@@ -75,11 +76,12 @@ export default function Company() {
                     label="Search for your companies"
                     setValue={setSearch}
                 />
-                {/* <Filter
+                <Filter
                     setFilter={setIndustry}
+                    filter={industry}
                     label="Filter by Industry"
                     options={options}
-                /> */}
+                />
                 {/* <Menu>
                     <MenuHandler>
                         <IconButton color="teal" variant="filled">
@@ -110,6 +112,11 @@ export default function Company() {
             <div className="mt-5 gap-4">
                 {companies &&
                     companies
+                        .filter(
+                            (company) =>
+                                industry.length === 0 ||
+                                industry.includes(company.industry)
+                        )
                         .filter(
                             (company) =>
                                 company.name.includes(search) ||
