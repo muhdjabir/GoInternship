@@ -6,6 +6,8 @@ type Application = {
 	platform: string;
     company: string;
 	assessment: string;
+    CreatedAt: string;
+    UpdatedAt: string;
 	UserID: number;
 	CompanyID: number;
 }
