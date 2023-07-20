@@ -1,21 +1,48 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import {
-    Card,
-    Typography,
-    CardBody,
-    Chip,
-    Avatar,
-    IconButton,
-    Tooltip,
-} from "@material-tailwind/react";
+import { Card, CardBody } from "@material-tailwind/react";
 import Title from "./Title";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Pagination from "@/components/navigation/Pagination";
 import TableData from "./TableData";
 import TableHeader from "./TableHeader";
+import { AppDispatch, useAppSelector } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import { getApplications } from "@/redux/features/applicationSlice";
 
 export default function Applications() {
+    const dispatch = useDispatch<AppDispatch>();
+    const uid = useAppSelector(
+        (state) => state.persistedReducer.auth.value.uid
+    );
+    const token = useAppSelector(
+        (state) => state.persistedReducer.auth.value.token
+    );
+    const applications = useAppSelector(
+        (state) => state.persistedReducer.application.value
+    );
+
+    useEffect(() => {
+        const fetchCompany = async () => {
+            console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}`);
+            const response = await fetch(
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/application/user/${uid}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            const json = await response.json();
+            console.log(json.resources);
+            if (response.ok) {
+                dispatch(getApplications(json.applications));
+            }
+        };
+        fetchCompany();
+        console.log(JSON.stringify(applications));
+    }, []);
     const TABLE_HEAD = [
         "Transaction",
         "Amount",
