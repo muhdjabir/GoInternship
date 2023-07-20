@@ -3,7 +3,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Chip, IconButton, Tooltip } from "@material-tailwind/react";
 import EditApplicationCard from "./EditApplicationCard";
 import { useState } from "react";
-
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { deleteApplication } from "@/redux/features/applicationSlice";
+import { useAppSelector } from "@/redux/store";
 export default function ApplicationTile({
     application,
     classes,
@@ -12,6 +15,28 @@ export default function ApplicationTile({
     classes: string;
 }) {
     const [open, setOpen] = useState(false);
+    const dispatch = useDispatch<AppDispatch>();
+    const token = useAppSelector(
+        (state) => state.persistedReducer.auth.value.token
+    );
+
+    // In case needed
+    // const handleDelete = async () => {
+    //     const response = await fetch(
+    //         `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/application/${application.ID}`,
+    //         {
+    //             method: "DELETE",
+    //             headers: {
+    //                 Authorization: `Bearer ${token}`,
+    //             },
+    //         }
+    //     );
+    //     const json = await response.json();
+
+    //     if (response.ok) {
+    //         dispatch(deleteApplication(application.ID));
+    //     }
+    // };
 
     return (
         <tr key={application.company}>
@@ -41,7 +66,6 @@ export default function ApplicationTile({
                                 ? "amber"
                                 : "red"
                         }
-                        className="mb-4"
                     />
                     {application.status === "Pending" && (
                         <Chip
@@ -52,6 +76,7 @@ export default function ApplicationTile({
                                     application.process.length - 1
                                 ]
                             }
+                            className="mt-4"
                             color="teal"
                         />
                     )}
@@ -77,15 +102,17 @@ export default function ApplicationTile({
                 </h5>
             </td>
             <td className={classes}>
-                <Tooltip content="Edit Application">
-                    <IconButton
-                        variant="text"
-                        color="blue-gray"
-                        onClick={() => setOpen(true)}
-                    >
-                        <EditIcon />
-                    </IconButton>
-                </Tooltip>
+                {application.status === "Pending" && (
+                    <Tooltip content="Edit Application">
+                        <IconButton
+                            variant="text"
+                            color="blue-gray"
+                            onClick={() => setOpen(true)}
+                        >
+                            <EditIcon />
+                        </IconButton>
+                    </Tooltip>
+                )}
             </td>
             <EditApplicationCard
                 open={open}
