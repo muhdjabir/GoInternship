@@ -78,7 +78,7 @@ func setRoutes() {
 	protected.GET("/application/:applicationid", routes.GetApplication)
 	protected.GET("/application/user/:userid", routes.GetUserApplications)
 	protected.POST("/application", routes.CreateApplication)
-	// protected.DELETE("/application/:applicationid", routes.DeleteApplication)
-	// protected.PATCH("/application/:applicationid", routes.UpdateApplication)
+	protected.DELETE("/application/:applicationid", routes.DeleteApplication)
+	protected.PATCH("/application/:applicationid", routes.UpdateApplication)
 	router.Run("0.0.0.0:8080")
 }

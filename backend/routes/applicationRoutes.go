@@ -86,3 +86,53 @@ func GetUserApplications(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{"message": "success", "applications": applications})
 }
+
+func DeleteApplication(c *gin.Context) {
+	idparam := c.Param("applicationid")
+	application_id, err := strconv.Atoi(idparam)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	application, err := models.DeleteApplicationByID(application_id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "Application Deleted", "application": application})
+}
+
+func UpdateApplication(c *gin.Context) {
+	idparam := c.Param("applicationid")
+	application_id, err := strconv.Atoi(idparam)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	var input ApplicationInput
+
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	application := models.Application{
+		Role:       input.Role,
+		Status:     input.Status,
+		Process:    input.Process,
+		Platform:   input.Platform,
+		Assessment: input.Assessment,
+		Company:    input.Company,
+		UserID:     input.UserID,
+		CompanyID:  input.CompanyID,
+	}
+
+	updatedEntry, err := models.UpdateApplicationByID(application, application_id)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Application Updated", "application": updatedEntry})
+}

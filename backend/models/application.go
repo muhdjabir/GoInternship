@@ -51,3 +51,23 @@ func GetApplicationsByUID(userid int) ([]Application, error) {
 	database.Database.Where("user_id = ?", userid).Find(&applications)
 	return applications, nil
 }
+
+func DeleteApplicationByID(applicationid int) (Application, error) {
+	var application Application
+
+	if err := database.Database.Delete(&Application{}, applicationid).Error; err != nil {
+		return application, errors.New(("Application not found"))
+	}
+	return application, nil
+}
+
+func UpdateApplicationByID(application Application, applicationid int) (Application, error) {
+	var updatedApplication Application
+	if err := database.Database.First(&updatedApplication, applicationid).Error; err != nil {
+		return updatedApplication, errors.New("Application not found")
+	}
+	if err := database.Database.Model(&updatedApplication).Updates(application).Error; err != nil {
+		return updatedApplication, err
+	}
+	return updatedApplication, nil
+}
