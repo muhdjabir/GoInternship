@@ -8,6 +8,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// "github.com/lib/pq"
+
 type ApplicationInput struct {
 	Role       string   `json:"role" binding:"required"`
 	Status     string   `json:"status" binding:"required"`
@@ -30,30 +32,29 @@ func GetAllApplications(c *gin.Context) {
 
 func CreateApplication(c *gin.Context) {
 	var input ApplicationInput
-
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	application := models.Application{}
-
-	application.Role = input.Role
-	application.Status = input.Status
-	application.Process = input.Process
-	application.Platform = input.Platform
-	application.Assessment = input.Assessment
-	application.Company = input.Company
-	application.UserID = input.UserID
-	application.CompanyID = input.CompanyID
-
-	newEntry, err := application.SaveApplication()
-
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	application := models.Application{
+		Role:       input.Role,
+		Status:     input.Status,
+		Process:    input.Process,
+		Platform:   input.Platform,
+		Assessment: input.Assessment,
+		Company:    input.Company,
+		UserID:     input.UserID,
+		CompanyID:  input.CompanyID,
 	}
 
-	c.JSON(http.StatusOK, gin.H{"message": "Application Created", "application": newEntry})
+	newApplication, err := application.Create()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"message": "Application created successfully", "application": newApplication})
 }
 
 func GetApplication(c *gin.Context) {
@@ -78,12 +79,12 @@ func GetUserApplications(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	applications, err := models.GetResourcesByUID(user_id)
+	applications, err := models.GetApplicationsByUID(user_id)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"message": "success", "company": applications})
+	c.JSON(http.StatusOK, gin.H{"message": "success", "applications": applications})
 }
 
 func DeleteApplication(c *gin.Context) {
@@ -116,16 +117,16 @@ func UpdateApplication(c *gin.Context) {
 		return
 	}
 
-	application := models.Application{}
-
-	application.Role = input.Role
-	application.Status = input.Status
-	application.Process = input.Process
-	application.Platform = input.Platform
-	application.Assessment = input.Assessment
-	application.Company = input.Company
-	application.UserID = input.UserID
-	application.CompanyID = input.CompanyID
+	application := models.Application{
+		Role:       input.Role,
+		Status:     input.Status,
+		Process:    input.Process,
+		Platform:   input.Platform,
+		Assessment: input.Assessment,
+		Company:    input.Company,
+		UserID:     input.UserID,
+		CompanyID:  input.CompanyID,
+	}
 
 	updatedEntry, err := models.UpdateApplicationByID(application, application_id)
 

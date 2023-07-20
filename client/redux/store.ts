@@ -3,6 +3,7 @@ import { useSelector, TypedUseSelectorHook } from "react-redux";
 import authReducer from './features/authSlice';
 import resourceReducer from './features/resourceSlice';
 import companyReducer from './features/companySlice';
+import applicationReducer from "./features/applicationSlice";
 import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
     auth: authReducer,
     resource: resourceReducer,
     company: companyReducer,
+    application: applicationReducer,
   });
 
   const persistConfig = { key: "root", storage, version: 1 };

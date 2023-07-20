@@ -19,7 +19,7 @@ func main() {
 func loadDatabase() {
 	database.Connect()
 	fmt.Println("Running Migrations")
-	database.Database.AutoMigrate(&models.User{}, &models.Resource{}, &models.Company{})
+	database.Database.AutoMigrate(&models.User{}, &models.Resource{}, &models.Company{}, &models.Application{})
 }
 
 func CORSMiddleware() gin.HandlerFunc {

@@ -4,9 +4,17 @@ type Application = {
 	status: string;
 	process: string[];
 	platform: string;
+    company: string;
 	assessment: string;
-	uid: number;
-	cid: number;
+    CreatedAt: string;
+    UpdatedAt: string;
+	UserID: number;
+	CompanyID: number;
+}
+
+type Header = {
+    title: string;
+    value: string;
 }
 
 type Company = {
@@ -58,4 +66,8 @@ type InitialCompanyState = {
     value: Company[];
 }
 
-export type {Company, Resource, LoginInput, SignupInput, InitialState, AuthState, InitialResourceState, InitialCompanyState};
+type InitialApplicationState = {
+    value: Application[];
+}
+
+export type {Header, Application, Company, Resource, LoginInput, SignupInput, InitialState, AuthState, InitialResourceState, InitialCompanyState, InitialApplicationState};
