@@ -3,6 +3,7 @@ package routes
 import (
 	"backend/models"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -54,4 +55,19 @@ func CreateApplication(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"message": "Application created successfully", "application": newApplication})
+}
+
+func GetUserApplications(c *gin.Context) {
+	idparam := c.Param("userid")
+	user_id, err := strconv.Atoi(idparam)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	applications, err := models.GetApplicationsByUID(user_id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "success", "applications": applications})
 }

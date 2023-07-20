@@ -33,3 +33,9 @@ func (application *Application) Create() (*Application, error) {
 	}
 	return application, nil
 }
+
+func GetApplicationsByUID(userid int) ([]Application, error) {
+	var applications []Application
+	database.Database.Where("user_id = ?", userid).Find(&applications)
+	return applications, nil
+}
