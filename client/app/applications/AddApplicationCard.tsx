@@ -83,12 +83,14 @@ export default function AddApplicationCard({
                 label="Company"
                 value=""
                 onChange={(e) =>
-                    setCompany(companies.find((comp) => comp.name === e))
+                    setCompany(
+                        companies.find((comp) => comp.ID.toString() === e)
+                    )
                 }
             >
                 {companies &&
                     companies.map((company) => (
-                        <Option key={company.ID} value={company.name}>
+                        <Option key={company.ID} value={company.ID.toString()}>
                             {company.name}
                         </Option>
                     ))}

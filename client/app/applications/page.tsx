@@ -46,73 +46,28 @@ export default function Applications() {
         console.log(JSON.stringify(applications));
     }, []);
     const TABLE_HEAD = [
-        "Transaction",
-        "Amount",
-        "Date",
+        "Company",
+        "Role",
+        "Assessment",
         "Status",
-        "Account",
+        "Platform",
+        "Applied",
+        "Last Updated",
         "",
     ];
 
-    const TABLE_ROWS = [
-        {
-            name: "Spotify",
-            amount: "$2,500",
-            date: "Wed 3:00pm",
-            status: "paid",
-            account: "visa",
-            accountNumber: "1234",
-            expiry: "06/2026",
-        },
-        {
-            name: "Amazon",
-            amount: "$5,000",
-            date: "Wed 1:00pm",
-            status: "paid",
-            account: "master-card",
-            accountNumber: "1234",
-            expiry: "06/2026",
-        },
-        {
-            name: "Pinterest",
-            amount: "$3,400",
-            date: "Mon 7:40pm",
-            status: "pending",
-            account: "master-card",
-            accountNumber: "1234",
-            expiry: "06/2026",
-        },
-        {
-            name: "Google",
-            amount: "$1,000",
-            date: "Wed 5:00pm",
-            status: "paid",
-            account: "visa",
-            accountNumber: "1234",
-            expiry: "06/2026",
-        },
-        {
-            name: "netflix",
-            amount: "$14,000",
-            date: "Wed 3:30am",
-            status: "cancelled",
-            account: "visa",
-            accountNumber: "1234",
-            expiry: "06/2026",
-        },
-    ];
     const itemsPerPage = 3;
 
     const [currentPage, setCurrentPage] = useState(1);
 
     // Calculate the total number of pages
-    const totalPages = Math.ceil(TABLE_ROWS.length / itemsPerPage);
+    const totalPages = Math.ceil(applications.length / itemsPerPage);
 
     // Get the current page's data
     const getCurrentPageData = () => {
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
-        return TABLE_ROWS.slice(startIndex, endIndex);
+        return applications.slice(startIndex, endIndex);
     };
 
     const handlePageChange = (page: number) => {
@@ -129,7 +84,7 @@ export default function Applications() {
                         <TableHeader data={TABLE_HEAD} />
                         <TableData
                             getCurrentPageData={getCurrentPageData}
-                            data={TABLE_ROWS}
+                            data={applications}
                         />
                     </table>
                 </CardBody>
