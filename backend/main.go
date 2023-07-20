@@ -75,7 +75,7 @@ func setRoutes() {
 
 	// Application Routes
 	protected.GET("/application", routes.GetAllApplications)
-	// protected.GET("/application/:applicationid", routes.GetApplication)
+	protected.GET("/application/:applicationid", routes.GetApplication)
 	protected.GET("/application/user/:userid", routes.GetUserApplications)
 	protected.POST("/application", routes.CreateApplication)
 	// protected.DELETE("/application/:applicationid", routes.DeleteApplication)

@@ -57,6 +57,21 @@ func CreateApplication(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"message": "Application created successfully", "application": newApplication})
 }
 
+func GetApplication(c *gin.Context) {
+	idparam := c.Param("applicationid")
+	application_id, err := strconv.Atoi(idparam)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	application, err := models.GetApplicationByID(application_id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "success", "application": application})
+}
+
 func GetUserApplications(c *gin.Context) {
 	idparam := c.Param("userid")
 	user_id, err := strconv.Atoi(idparam)

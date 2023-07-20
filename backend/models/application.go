@@ -2,6 +2,7 @@ package models
 
 import (
 	"backend/database"
+	"errors"
 	"fmt"
 
 	"github.com/lib/pq"
@@ -31,6 +32,17 @@ func (application *Application) Create() (*Application, error) {
 	if err := database.Database.Create(&application).Error; err != nil {
 		return nil, err
 	}
+	return application, nil
+}
+
+func GetApplicationByID(applicationid int) (Application, error) {
+
+	var application Application
+
+	if err := database.Database.First(&application, applicationid).Error; err != nil {
+		return application, errors.New("Application not found")
+	}
+
 	return application, nil
 }
 
