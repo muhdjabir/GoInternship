@@ -2,7 +2,11 @@ import { Button, CardHeader, Input } from "@material-tailwind/react";
 import SearchIcon from "@mui/icons-material/Search";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 
-export default function Title() {
+export default function Title({
+    setOpen,
+}: {
+    setOpen: (open: boolean) => void;
+}) {
     return (
         <CardHeader floated={false} shadow={false} className="rounded-none">
             <div className="mb-4 flex flex-col justify-between gap-8 md:flex-row md:items-center">
@@ -24,6 +28,7 @@ export default function Title() {
                         className="flex items-center gap-3"
                         color="teal"
                         size="sm"
+                        onClick={() => setOpen(true)}
                     >
                         <PostAddIcon />
                         Add Application

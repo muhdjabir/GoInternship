@@ -90,7 +90,7 @@ export default function Company() {
                 {companies &&
                     companies
                         .filter(
-                            (company) =>
+                            (company: Company) =>
                                 industry.length === 0 ||
                                 industry.includes(company.industry)
                         )

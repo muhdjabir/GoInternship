@@ -10,8 +10,10 @@ import TableHeader from "./TableHeader";
 import { AppDispatch, useAppSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { getApplications } from "@/redux/features/applicationSlice";
+import AddApplicationCard from "./AddApplicationCard";
 
 export default function Applications() {
+    const [open, setOpen] = useState<boolean>(false);
     const dispatch = useDispatch<AppDispatch>();
     const uid = useAppSelector(
         (state) => state.persistedReducer.auth.value.uid
@@ -119,8 +121,9 @@ export default function Applications() {
     return (
         <main className="min-h-screen px-5 py-5 lg:px-24 lg:pt-10">
             <h1 className="text-2xl mb-5 text-center">Your Applications</h1>
+            <AddApplicationCard open={open} handleOpen={() => setOpen(!open)} />
             <Card className="h-full w-full">
-                <Title />
+                <Title setOpen={setOpen} />
                 <CardBody className="overflow-scroll px-0">
                     <table className="w-full min-w-max table-auto text-left">
                         <TableHeader data={TABLE_HEAD} />
