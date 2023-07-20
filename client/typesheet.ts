@@ -12,6 +12,11 @@ type Application = {
 	CompanyID: number;
 }
 
+type Header = {
+    title: string;
+    value: string;
+}
+
 type Company = {
     ID: number;
     name: string;
@@ -65,4 +70,4 @@ type InitialApplicationState = {
     value: Application[];
 }
 
-export type {Application, Company, Resource, LoginInput, SignupInput, InitialState, AuthState, InitialResourceState, InitialCompanyState, InitialApplicationState};
+export type {Header, Application, Company, Resource, LoginInput, SignupInput, InitialState, AuthState, InitialResourceState, InitialCompanyState, InitialApplicationState};
