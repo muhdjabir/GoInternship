@@ -1,10 +1,4 @@
-import {
-    Avatar,
-    Chip,
-    IconButton,
-    Tooltip,
-    Typography,
-} from "@material-tailwind/react";
+import { Avatar, Chip, IconButton, Tooltip } from "@material-tailwind/react";
 import { PencilIcon } from "@heroicons/react/24/solid";
 
 export default function TableData({
@@ -38,32 +32,18 @@ export default function TableData({
                         <tr key={name}>
                             <td className={classes}>
                                 <div className="flex items-center gap-3">
-                                    <Typography
-                                        variant="small"
-                                        color="blue-gray"
-                                        className="font-bold"
-                                    >
+                                    <h5 className="text-sm font-bold">
                                         {name}
-                                    </Typography>
+                                    </h5>
                                 </div>
                             </td>
                             <td className={classes}>
-                                <Typography
-                                    variant="small"
-                                    color="blue-gray"
-                                    className="font-normal"
-                                >
+                                <h5 className="text-sm font-normal">
                                     {amount}
-                                </Typography>
+                                </h5>
                             </td>
                             <td className={classes}>
-                                <Typography
-                                    variant="small"
-                                    color="blue-gray"
-                                    className="font-normal"
-                                >
-                                    {date}
-                                </Typography>
+                                <h5 className="text-sm font-normal">{date}</h5>
                             </td>
                             <td className={classes}>
                                 <div className="w-max">
@@ -97,21 +77,13 @@ export default function TableData({
                                         />
                                     </div>
                                     <div className="flex flex-col">
-                                        <Typography
-                                            variant="small"
-                                            color="blue-gray"
-                                            className="font-normal capitalize"
-                                        >
+                                        <h5 className="text-sm font-normal capitalize">
                                             {account.split("-").join(" ")}{" "}
                                             {accountNumber}
-                                        </Typography>
-                                        <Typography
-                                            variant="small"
-                                            color="blue-gray"
-                                            className="font-normal opacity-70"
-                                        >
+                                        </h5>
+                                        <h5 className="text-sm font-normal opacity-70">
                                             {expiry}
-                                        </Typography>
+                                        </h5>
                                     </div>
                                 </div>
                             </td>
