@@ -71,3 +71,13 @@ func UpdateApplicationByID(application Application, applicationid int) (Applicat
 	}
 	return updatedApplication, nil
 }
+
+func GetApplicationsTallyByUID(userid int) (int64, int64, int64, error) {
+	var offerCount int64
+	var rejectCount int64
+	var pendingCount int64
+	database.Database.Model(&Application{}).Where("user_id = ? AND status = ?", userid, "Offered").Count(&offerCount)
+	database.Database.Model(&Application{}).Where("user_id = ? AND status = ?", userid, "Rejected").Count(&rejectCount)
+	database.Database.Model(&Application{}).Where("user_id = ? AND status = ?", userid, "Pending").Count(&pendingCount)
+	return offerCount, rejectCount, pendingCount, nil
+}

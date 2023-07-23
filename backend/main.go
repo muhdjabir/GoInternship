@@ -80,5 +80,8 @@ func setRoutes() {
 	protected.POST("/application", routes.CreateApplication)
 	protected.DELETE("/application/:applicationid", routes.DeleteApplication)
 	protected.PATCH("/application/:applicationid", routes.UpdateApplication)
+
+	// Dashboard Routes
+	protected.GET("/dashboard", routes.GetUserDashboard)
 	router.Run("0.0.0.0:8080")
 }
