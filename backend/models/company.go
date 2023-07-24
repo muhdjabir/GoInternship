@@ -68,3 +68,11 @@ func UpdateCompanyByID(company Company, companyid int) (Company, error) {
 	}
 	return updatedCompany, nil
 }
+
+func GetCompanyTallyByUID(userid int) (int64, error) {
+	var companyCount int64
+	if err := database.Database.Model(&Company{}).Where("user_id = ?", userid).Count(&companyCount).Error; err != nil {
+		return companyCount, errors.New("error retrieving count")
+	}
+	return companyCount, nil
+}
