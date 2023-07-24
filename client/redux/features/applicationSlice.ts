@@ -31,9 +31,12 @@ export const application = createSlice({
                 ...state,
                 value: [...state.value.filter((application) => application.ID !== action.payload.ID), action.payload]
             }
-        }
+        },
+        resetApplications: () => {
+            return initialState;
+        },
     },
 });
 
-export const { getApplications, createApplication, deleteApplication, updateApplication } = application.actions;
+export const { getApplications, createApplication, deleteApplication, updateApplication, resetApplications } = application.actions;
 export default application.reducer;

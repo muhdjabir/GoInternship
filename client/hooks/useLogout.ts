@@ -1,4 +1,8 @@
 import { logOut } from "@/redux/features/authSlice";
+import { resetApplications } from "@/redux/features/applicationSlice";
+import { resetCompanies } from "@/redux/features/companySlice";
+import { resetDashboard } from "@/redux/features/dashboardSlice";
+import { resetResources } from "@/redux/features/resourceSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 // Logout Function updates the localStorage to no longer contain user
@@ -12,6 +16,10 @@ export const useLogout = () => {
 
         // dispatch logout action
         dispatch(logOut());
+        dispatch(resetApplications());
+        dispatch(resetCompanies());
+        dispatch(resetDashboard());
+        dispatch(resetResources());
     }
 
     return {logout}

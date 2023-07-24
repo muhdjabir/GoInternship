@@ -104,8 +104,14 @@ export default function EditApplicationCard({
                 defaultValue={phase}
                 onChange={(e) => setPhase(e ? e : "")}
             >
-                <Option value="Online Assessment">Online Assessment</Option>
-                <Option value="Interview">Interview</Option>
+                {application.process[application.process.length - 1] ===
+                    "Applied" && (
+                    <Option value="Online Assessment">
+                        Online Assessment{" "}
+                    </Option>
+                )}
+                {application.process[application.process.length - 1] !==
+                    "Interview" && <Option value="Interview">Interview</Option>}
                 <Option value="Ghosted">Ghosted</Option>
                 <Option value="Offered">Offered</Option>
                 <Option value="Rejected">Rejected</Option>

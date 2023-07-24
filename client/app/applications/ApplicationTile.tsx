@@ -1,3 +1,5 @@
+"use client";
+
 import { Application } from "@/typesheet";
 import EditIcon from "@mui/icons-material/Edit";
 import { Chip, IconButton, Tooltip } from "@material-tailwind/react";
@@ -114,11 +116,13 @@ export default function ApplicationTile({
                     </Tooltip>
                 )}
             </td>
-            <EditApplicationCard
-                open={open}
-                handleOpen={() => setOpen(!open)}
-                application={application}
-            />
+            {open && (
+                <EditApplicationCard
+                    open={open}
+                    handleOpen={() => setOpen(!open)}
+                    application={application}
+                />
+            )}
         </tr>
     );
 }

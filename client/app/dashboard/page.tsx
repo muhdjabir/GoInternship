@@ -61,7 +61,7 @@ export default function Dashboard() {
             <Card>
                 <CardBody style={{ height: 400 }}>
                     <h2 className="text-2xl text-center font-semibold">
-                        Sankey Diagram
+                        Application Sankey
                     </h2>
                     <SankeyChart data={data} />
                 </CardBody>

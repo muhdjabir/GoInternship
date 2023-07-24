@@ -20,8 +20,11 @@ export const dashboard = createSlice({
                 value: action.payload,
             }
         },
+        resetDashboard: () => {
+            return initialState;
+        },
     },
 });
 
-export const { getDashboard } = dashboard.actions;
+export const { getDashboard, resetDashboard } = dashboard.actions;
 export default dashboard.reducer;
