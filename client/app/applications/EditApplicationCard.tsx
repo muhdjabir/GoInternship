@@ -6,6 +6,7 @@ import {
     Button,
     Textarea,
     CardFooter,
+    Input,
     Select,
     Option,
 } from "@material-tailwind/react";
@@ -33,6 +34,9 @@ export default function EditApplicationCard({
     const dispatch = useDispatch<AppDispatch>();
     const token = useAppSelector(
         (state) => state.persistedReducer.auth.value.token
+    );
+    const uid = useAppSelector(
+        (state) => state.persistedReducer.auth.value.uid
     );
 
     const valid = () => {
@@ -100,16 +104,14 @@ export default function EditApplicationCard({
                 defaultValue={phase}
                 onChange={(e) => setPhase(e ? e : "")}
             >
-                <Option
-                    value="Online Assessment"
-                    disabled={
-                        application.process[application.process.length - 1] !==
-                        "Applied"
-                    }
-                >
-                    Online Assessment
-                </Option>
-                <Option value="Interview">Interview</Option>
+                {application.process[application.process.length - 1] ===
+                    "Applied" && (
+                    <Option value="Online Assessment">
+                        Online Assessment{" "}
+                    </Option>
+                )}
+                {application.process[application.process.length - 1] !==
+                    "Interview" && <Option value="Interview">Interview</Option>}
                 <Option value="Ghosted">Ghosted</Option>
                 <Option value="Offered">Offered</Option>
                 <Option value="Rejected">Rejected</Option>
