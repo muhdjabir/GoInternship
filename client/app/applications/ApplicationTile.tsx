@@ -5,10 +5,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Chip, IconButton, Tooltip } from "@material-tailwind/react";
 import EditApplicationCard from "./EditApplicationCard";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
-import { deleteApplication } from "@/redux/features/applicationSlice";
-import { useAppSelector } from "@/redux/store";
+// import { useDispatch } from "react-redux";
+// import { AppDispatch } from "@/redux/store";
+// import { deleteApplication } from "@/redux/features/applicationSlice";
+// import { useAppSelector } from "@/redux/store";
 export default function ApplicationTile({
     application,
     classes,
@@ -17,10 +17,10 @@ export default function ApplicationTile({
     classes: string;
 }) {
     const [open, setOpen] = useState(false);
-    const dispatch = useDispatch<AppDispatch>();
-    const token = useAppSelector(
-        (state) => state.persistedReducer.auth.value.token
-    );
+    // const dispatch = useDispatch<AppDispatch>();
+    // const token = useAppSelector(
+    //     (state) => state.persistedReducer.auth.value.token
+    // );
 
     // In case needed
     // const handleDelete = async () => {
@@ -109,20 +109,19 @@ export default function ApplicationTile({
                         <IconButton
                             variant="text"
                             color="blue-gray"
-                            onClick={() => setOpen(true)}
+                            onClick={() => setOpen(!open)}
                         >
                             <EditIcon />
                         </IconButton>
                     </Tooltip>
                 )}
             </td>
-            {open && (
-                <EditApplicationCard
-                    open={open}
-                    handleOpen={() => setOpen(!open)}
-                    application={application}
-                />
-            )}
+
+            <EditApplicationCard
+                open={open}
+                handleOpen={() => setOpen(!open)}
+                application={application}
+            />
         </tr>
     );
 }
