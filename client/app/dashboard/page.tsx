@@ -8,6 +8,7 @@ import { getDashboard } from "@/redux/features/dashboardSlice";
 import { Node, SankeyData } from "@/typesheet";
 import SankeyChart from "./SankeyChart";
 import { Card, CardBody } from "@material-tailwind/react";
+import CardContainer from "./CardContainer";
 
 export default function Dashboard() {
     const dispatch = useDispatch<AppDispatch>();
@@ -58,6 +59,7 @@ export default function Dashboard() {
     return (
         <main className="min-h-screen px-5 py-5 lg:px-24 lg:pt-10">
             <h1 className="text-2xl mb-5 text-center">Your Dashboard</h1>
+            <CardContainer />
             <Card>
                 <CardBody style={{ height: 400 }}>
                     <h2 className="text-2xl text-center font-semibold">

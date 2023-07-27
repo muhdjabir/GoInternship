@@ -11,7 +11,7 @@ const Footer = () => {
                 &copy; 2023 Muhammad Jabir
             </Typography>
             <ul className="flex flex-wrap items-center gap-y-2 gap-x-8 mr-10">
-                <li>
+                {/* <li>
                     <Typography
                         as="a"
                         href="https://www.linkedin.com/in/muhd-jabir-bja/"
@@ -21,7 +21,7 @@ const Footer = () => {
                         <LinkedInIcon />
                         Linkedin
                     </Typography>
-                </li>
+                </li> */}
                 <li>
                     <Typography
                         as="a"
@@ -33,7 +33,7 @@ const Footer = () => {
                         GitHub
                     </Typography>
                 </li>
-                <li>
+                {/* <li>
                     <Typography
                         as="a"
                         href="#"
@@ -43,7 +43,7 @@ const Footer = () => {
                         <ArticleIcon />
                         Resume
                     </Typography>
-                </li>
+                </li> */}
                 <li>
                     <Typography
                         as="a"
