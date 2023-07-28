@@ -6,7 +6,6 @@ const ResponsiveSankey = dynamic(
     () => import("@nivo/sankey").then((m) => m.ResponsiveSankey),
     { ssr: false }
 );
-// import { ResponsiveSankey } from "@nivo/sankey";
 
 const SankeyChart = ({ data }: { data: SankeyData }) => (
     <ResponsiveSankey

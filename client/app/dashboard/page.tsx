@@ -9,6 +9,7 @@ import { Node, SankeyData } from "@/typesheet";
 import SankeyChart from "./SankeyChart";
 import { Card, CardBody } from "@material-tailwind/react";
 import CardContainer from "./CardContainer";
+import PieChart from "./PieChart";
 
 export default function Dashboard() {
     const dispatch = useDispatch<AppDispatch>();
@@ -52,20 +53,50 @@ export default function Dashboard() {
         console.log(JSON.stringify(dashboard));
     }, []);
 
-    const data: SankeyData = {
+    const sankeyData: SankeyData = {
         nodes: nodes,
         links: dashboard.sankey,
     };
+
+    const pieData = [
+        {
+            id: "Pending",
+            label: "Pending",
+            value: dashboard.pending,
+            color: "hsl(170, 70%, 50%)",
+        },
+        {
+            id: "Rejected",
+            label: "Rejected",
+            value: dashboard.rejected,
+            color: "hsl(357, 70%, 50%)",
+        },
+
+        {
+            id: "Offered",
+            label: "Offered",
+            value: dashboard.offered,
+            color: "hsl(288, 70%, 50%)",
+        },
+    ];
     return (
         <main className="min-h-screen px-5 py-5 lg:px-24 lg:pt-10">
             <h1 className="text-2xl mb-5 text-center">Your Dashboard</h1>
-            <CardContainer />
+            <Card className="grid grid-cols-3 p-4 my-4">
+                <div className="col-span-2 h-80 text-center">
+                    <h2 className="text-2xl text-center font-semibold">
+                        Application Status
+                    </h2>
+                    <PieChart data={pieData} />
+                </div>
+                <CardContainer />
+            </Card>
             <Card>
-                <CardBody style={{ height: 400 }}>
+                <CardBody className="h-80">
                     <h2 className="text-2xl text-center font-semibold">
                         Application Sankey
                     </h2>
-                    <SankeyChart data={data} />
+                    <SankeyChart data={sankeyData} />
                 </CardBody>
             </Card>
         </main>

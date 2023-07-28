@@ -8,25 +8,17 @@ export default function CardContainer() {
     );
 
     return (
-        <div className="flex flex-row justify-between my-5">
+        <div className="flex flex-col justify-between my-5">
             <NumberCard
-                title="Pending Applications"
-                color="teal-400"
-                data={dashboard.pending}
-            />
-            <NumberCard
-                title="Rejected Applications"
-                color="teal-400"
-                data={dashboard.rejected}
-            />
-            <NumberCard
-                title="Successful Applications"
-                color="teal-400"
-                data={dashboard.offered}
+                title="Total Applications"
+                color="teal"
+                data={
+                    dashboard.pending + dashboard.offered + dashboard.rejected
+                }
             />
             <NumberCard
                 title="Total Companies"
-                color="teal-400"
+                color="teal"
                 data={dashboard.companies}
             />
         </div>
