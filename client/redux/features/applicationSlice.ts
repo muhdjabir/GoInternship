@@ -31,9 +31,21 @@ export const application = createSlice({
                 ...state,
                 value: [...state.value.filter((application) => application.ID !== action.payload.ID), action.payload]
             }
-        }
+            // const updatedApplication = action.payload;
+            // const index = state.value.findIndex(
+            // (app) => app.ID === updatedApplication.ID
+            // );
+
+            // if (index !== -1) {
+            //  // If the application is found, replace it with the updated application
+            //  state.value[index] = updatedApplication;
+            // }
+        },
+        resetApplications: () => {
+            return initialState;
+        },
     },
 });
 
-export const { getApplications, createApplication, deleteApplication, updateApplication } = application.actions;
+export const { getApplications, createApplication, deleteApplication, updateApplication, resetApplications } = application.actions;
 export default application.reducer;

@@ -71,7 +71,7 @@ export default function AddApplicationCard({
         const json = await response.json();
 
         if (response.ok) {
-            dispatch(createApplication(json.company));
+            dispatch(createApplication(json.application));
             handleOpen();
         }
     };

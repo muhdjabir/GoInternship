@@ -4,6 +4,7 @@ import authReducer from './features/authSlice';
 import resourceReducer from './features/resourceSlice';
 import companyReducer from './features/companySlice';
 import applicationReducer from "./features/applicationSlice";
+import dashboardReducer from "./features/dashboardSlice";
 import { persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     resource: resourceReducer,
     company: companyReducer,
     application: applicationReducer,
+    dashboard: dashboardReducer,
   });
 
   const persistConfig = { key: "root", storage, version: 1 };

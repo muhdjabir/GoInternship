@@ -70,4 +70,49 @@ type InitialApplicationState = {
     value: Application[];
 }
 
-export type {Header, Application, Company, Resource, LoginInput, SignupInput, InitialState, AuthState, InitialResourceState, InitialCompanyState, InitialApplicationState};
+type SankeyNode = {
+    source: string;
+    target: string;
+    value: number
+}
+
+type Node = {
+    id: string;
+    nodeColor: string;
+}
+
+type SankeyData = {
+    nodes: Node[];
+    links: SankeyNode[];
+}
+
+type Dashboard = {
+    offered: number;
+    rejected: number;
+    pending: number;
+    companies: number;
+    sankey: SankeyNode[];
+}
+
+type InitialDashboardState = {
+    value: Dashboard;
+}
+
+export type {
+    Header,
+    Application,
+    Company,
+    Resource,
+    LoginInput,
+    SignupInput,
+    InitialState,
+    AuthState,
+    InitialResourceState,
+    InitialCompanyState,
+    InitialApplicationState,
+    InitialDashboardState,
+    SankeyNode,
+    Node,
+    SankeyData,
+    Dashboard
+};

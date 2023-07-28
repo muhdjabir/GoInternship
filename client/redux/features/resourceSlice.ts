@@ -26,8 +26,11 @@ export const resource = createSlice({
                 value: [...state.value.filter((resource) => resource.ID !== action.payload)]
             }
         },
+        resetResources: () => {
+            return initialState;
+        },
     },
 });
 
-export const { getResources, createResource, deleteResource } = resource.actions;
+export const { getResources, createResource, deleteResource, resetResources } = resource.actions;
 export default resource.reducer;

@@ -56,7 +56,7 @@ export default function Applications() {
         "",
     ];
 
-    const itemsPerPage = 3;
+    const itemsPerPage = 10;
 
     const [currentPage, setCurrentPage] = useState(1);
 

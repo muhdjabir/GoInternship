@@ -24,7 +24,7 @@ type Application struct {
 type SankeyProcess struct {
 	Source string `json:"source"`
 	Target string `json:"target"`
-	Count  int    `json:"count"`
+	Value  int    `json:"value"`
 }
 
 func GetApplications() ([]Application, error) {
@@ -125,14 +125,14 @@ func generateMap() map[string]map[string]int {
 func generateSankey(process map[string]map[string]int) []SankeyProcess {
 	var sankey []SankeyProcess
 	for source, destination := range process {
-		for target, count := range destination {
-			if count == 0 {
+		for target, value := range destination {
+			if value == 0 {
 				continue
 			}
 			sankey = append(sankey, SankeyProcess{
 				Source: source,
 				Target: target,
-				Count:  count,
+				Value:  value,
 			})
 		}
 	}
