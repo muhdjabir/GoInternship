@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 
-import LoginForm from "@/components/form/LoginForm";
+import LoginForm from "@/components/Form/LoginForm";
 
 export default function Login() {
     return (
