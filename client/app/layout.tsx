@@ -8,10 +8,10 @@ import { ReduxProvider } from "@/redux/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-    title: "GoInternship",
-    description: "Your internships all in one place",
-};
+// export const metadata = {
+//     title: "GoInternship",
+//     description: "Your internships all in one place",
+// };
 
 export default function RootLayout({
     children,
