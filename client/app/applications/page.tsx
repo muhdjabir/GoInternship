@@ -11,9 +11,9 @@ import { AppDispatch, useAppSelector } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { getApplications } from "@/redux/features/applicationSlice";
 import AddApplicationCard from "./AddApplicationCard";
+import { platform } from "os";
 
 export default function Applications() {
-    const [open, setOpen] = useState<boolean>(false);
     const dispatch = useDispatch<AppDispatch>();
     const uid = useAppSelector(
         (state) => state.persistedReducer.auth.value.uid
@@ -24,6 +24,22 @@ export default function Applications() {
     const applications = useAppSelector(
         (state) => state.persistedReducer.application.value
     );
+    const [open, setOpen] = useState<boolean>(false);
+    const [data, setData] = useState(applications);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const filter = (input: string) => {
+        setCurrentPage(1);
+        setData(
+            applications.filter(
+                (application) =>
+                    application.role.toLowerCase().includes(input) ||
+                    application.company.toLowerCase().includes(input) ||
+                    application.assessment.toLowerCase().includes(input) ||
+                    application.platform.toLowerCase().includes(input)
+            )
+        );
+    };
 
     useEffect(() => {
         const fetchCompany = async () => {
@@ -59,16 +75,14 @@ export default function Applications() {
 
     const itemsPerPage = 10;
 
-    const [currentPage, setCurrentPage] = useState(1);
-
     // Calculate the total number of pages
-    const totalPages = Math.ceil(applications.length / itemsPerPage);
+    const totalPages = Math.ceil(data.length / itemsPerPage);
 
     // Get the current page's data
     const getCurrentPageData = () => {
         const startIndex = (currentPage - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
-        return applications.slice(startIndex, endIndex);
+        return data.slice(startIndex, endIndex);
     };
 
     const handlePageChange = (page: number) => {
@@ -80,13 +94,13 @@ export default function Applications() {
             <h1 className="text-2xl mb-5 text-center">Your Applications</h1>
             <AddApplicationCard open={open} handleOpen={() => setOpen(!open)} />
             <Card className="h-full w-full">
-                <Title setOpen={setOpen} />
+                <Title setOpen={setOpen} setFilter={filter} />
                 <CardBody className="overflow-scroll px-0">
                     <table className="w-full min-w-max table-auto text-left">
                         <TableHeader data={TABLE_HEAD} />
                         <TableData
                             getCurrentPageData={getCurrentPageData}
-                            data={applications}
+                            data={data}
                         />
                     </table>
                 </CardBody>
