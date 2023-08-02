@@ -45,6 +45,7 @@ export default function Applications() {
         fetchCompany();
         console.log(JSON.stringify(applications));
     }, []);
+
     const TABLE_HEAD = [
         "Company",
         "Role",
@@ -73,6 +74,7 @@ export default function Applications() {
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
+
     return (
         <main className="min-h-screen px-5 py-5 lg:px-24 lg:pt-10">
             <h1 className="text-2xl mb-5 text-center">Your Applications</h1>

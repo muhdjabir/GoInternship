@@ -81,7 +81,7 @@ export default function NavigationBar() {
                 >
                     GoInternship
                 </Typography>
-                <div className="hidden lg:block">{navList}</div>
+                <div className="hidden lg:block">{username && navList}</div>
                 {username && (
                     <div className="flex">
                         <p className="mr-5 pt-1 text-md">{username}</p>
@@ -162,7 +162,7 @@ export default function NavigationBar() {
             </div>
             <Collapse open={openNav}>
                 <div className="container mx-auto">
-                    {navList}
+                    {username && navList}
                     {!username && (
                         <div>
                             <Link href="/login">

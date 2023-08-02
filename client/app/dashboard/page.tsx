@@ -87,7 +87,7 @@ export default function Dashboard() {
                     <h2 className="text-2xl text-center font-semibold">
                         Application Status
                     </h2>
-                    <PieChart data={pieData} />
+                    {pieData.length !== 0 && <PieChart data={pieData} />}
                 </div>
                 <CardContainer />
             </Card>
@@ -96,7 +96,9 @@ export default function Dashboard() {
                     <h2 className="text-2xl text-center font-semibold">
                         Application Sankey
                     </h2>
-                    <SankeyChart data={sankeyData} />
+                    {dashboard.sankey != null && (
+                        <SankeyChart data={sankeyData} />
+                    )}
                 </CardBody>
             </Card>
         </main>
