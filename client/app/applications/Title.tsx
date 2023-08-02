@@ -4,10 +4,8 @@ import PostAddIcon from "@mui/icons-material/PostAdd";
 
 export default function Title({
     setOpen,
-    setFilter,
 }: {
     setOpen: (open: boolean) => void;
-    setFilter: (filter: string) => void;
 }) {
     return (
         <CardHeader floated={false} shadow={false} className="rounded-none">
@@ -24,9 +22,6 @@ export default function Title({
                             label="Search"
                             icon={<SearchIcon />}
                             color="teal"
-                            onChange={(e) =>
-                                setFilter(e.target.value.toLowerCase())
-                            }
                         />
                     </div>
                     <Button
