@@ -8,18 +8,23 @@ import { Button } from "@material-tailwind/react";
 const Hero = () => {
     return (
         <div className="w-full py-16 px-4">
-            <div className="max-w-[1240px] mx-auto grid md:grid-cols-2">
+            <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 p-5">
                 <div className="flex flex-col text-black justify-between">
                     <h1 className="md:text-4xl sm:text-3xl text-2xl font-poppins py-2 text-left border-b-8 border-teal-400">
                         Track all your applications in one place
                     </h1>
-                    <p className="text-2xl font-montserrat text-left text-gray-500 font-normal">
-                        Centralise your Internship grind and learn from the
+                    <p className="my-4 md:my-0 text-2xl font-montserrat text-center md:text-left text-gray-500 font-normal">
+                        Centralise your internship grind and learn from the
                         community around you
                     </p>
                     <div>
                         <Link href="/signup">
-                            <Button variant="filled" size="lg" color="teal">
+                            <Button
+                                variant="filled"
+                                size="lg"
+                                color="teal"
+                                className="bg"
+                            >
                                 <span>Join us</span>
                             </Button>
                         </Link>
