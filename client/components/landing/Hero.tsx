@@ -19,11 +19,7 @@ const Hero = () => {
                     </p>
                     <div>
                         <Link href="/signup">
-                            <Button
-                                variant="filled"
-                                size="lg"
-                                className="bg-teal-400"
-                            >
+                            <Button variant="filled" size="lg" color="teal">
                                 <span>Join us</span>
                             </Button>
                         </Link>

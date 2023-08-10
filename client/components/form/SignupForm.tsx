@@ -62,8 +62,10 @@ export default function SignupForm() {
                     </div>
                 )}
                 <Button
-                    className="mt-6 bg-teal-400"
+                    className="mt-6"
                     fullWidth
+                    variant="filled"
+                    color="teal"
                     onClick={handleSignup}
                 >
                     Sign up

@@ -61,11 +61,7 @@ export default function AddResourceCard({
                 <Button variant="outlined" color="teal" onClick={handleOpen}>
                     Cancel
                 </Button>
-                <Button
-                    variant="filled"
-                    className="bg-teal-400"
-                    onClick={handleSubmit}
-                >
+                <Button variant="filled" color="teal" onClick={handleSubmit}>
                     Add
                 </Button>
             </CardFooter>

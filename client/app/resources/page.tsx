@@ -58,7 +58,8 @@ export default function Resource() {
                 <Button
                     variant="filled"
                     size="sm"
-                    className="lg:px-5 bg-teal-400"
+                    className="lg:px-5 "
+                    color="teal"
                     onClick={() => setOpen(!open)}
                 >
                     Add Resource <PostAddIcon />

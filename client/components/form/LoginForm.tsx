@@ -59,7 +59,9 @@ const LoginForm = () => {
                     </div>
                 )}
                 <Button
-                    className="mt-6 bg-teal-400"
+                    className="mt-6"
+                    color="teal"
+                    variant="filled"
                     fullWidth
                     onClick={handleLogin}
                 >

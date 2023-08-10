@@ -100,7 +100,7 @@ export default function AddCompanyCard({
                 </Button>
                 <Button
                     variant="filled"
-                    className="bg-teal-400"
+                    color="teal"
                     disabled={valid()}
                     onClick={handleSubmit}
                 >

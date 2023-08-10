@@ -119,7 +119,7 @@ export default function AddApplicationCard({
                 </Button>
                 <Button
                     variant="filled"
-                    className="bg-teal-400"
+                    color="teal"
                     disabled={valid()}
                     onClick={handleSubmit}
                 >
