@@ -83,22 +83,31 @@ export default function Dashboard() {
         <main className="min-h-screen px-5 py-5 lg:px-24 lg:pt-10">
             <h1 className="text-2xl mb-5 text-center">Your Dashboard</h1>
             <Card className="grid grid-cols-3 p-4 my-4">
-                <div className="col-span-2 h-80 text-center">
+                <div className="col-span-3 h-80 text-center">
                     <h2 className="text-2xl text-center font-semibold">
                         Application Status
                     </h2>
                     {pieData.length !== 0 && <PieChart data={pieData} />}
                 </div>
-                <CardContainer />
+                <div className="justify-center w-full col-span-3">
+                    <CardContainer />
+                </div>
             </Card>
             <Card>
                 <CardBody className="h-80">
                     <h2 className="text-2xl text-center font-semibold">
                         Application Sankey
                     </h2>
-                    {dashboard.sankey != null && (
-                        <SankeyChart data={sankeyData} />
-                    )}
+                    <div className="hidden md:block">
+                        {dashboard.sankey != null && (
+                            <SankeyChart data={sankeyData} />
+                        )}
+                    </div>
+                    <div className="md:hidden">
+                        <h3 className="text-center text-2xl">
+                            Sankey chart only available on a larger screen
+                        </h3>
+                    </div>
                 </CardBody>
             </Card>
         </main>

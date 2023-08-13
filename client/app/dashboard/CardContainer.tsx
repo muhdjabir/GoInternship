@@ -8,7 +8,7 @@ export default function CardContainer() {
     );
 
     return (
-        <div className="flex flex-col justify-between my-5">
+        <div className="flex flex-row md:flex-col justify-between my-5">
             <NumberCard
                 title="Total Applications"
                 color="teal"
