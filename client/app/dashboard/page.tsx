@@ -94,11 +94,11 @@ export default function Dashboard() {
                 </div>
             </Card>
             <Card>
-                <CardBody className="h-80">
+                <CardBody className="h-96">
                     <h2 className="text-2xl text-center font-semibold">
                         Application Sankey
                     </h2>
-                    <div className="hidden md:block">
+                    <div className="hidden md:block md:h-80">
                         {dashboard.sankey != null && (
                             <SankeyChart data={sankeyData} />
                         )}
