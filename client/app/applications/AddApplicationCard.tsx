@@ -77,7 +77,7 @@ export default function AddApplicationCard({
     };
 
     return (
-        <Modal open={open} handleOpen={handleOpen} label="Add a company">
+        <Modal open={open} handleOpen={handleOpen} label="Add an application">
             <Input label="Role" onChange={(e) => setRole(e.target.value)} />
             <Select
                 label="Company"

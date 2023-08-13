@@ -31,7 +31,7 @@ export default function Title({
                         onClick={() => setOpen(true)}
                     >
                         <PostAddIcon />
-                        Add Application
+                        <p className="hidden md:flex">Add Application</p>
                     </Button>
                 </div>
             </div>
