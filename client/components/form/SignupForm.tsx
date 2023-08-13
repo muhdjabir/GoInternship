@@ -42,7 +42,7 @@ export default function SignupForm() {
                     <Input
                         size="lg"
                         label="Email"
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value.toLowerCase())}
                     />
                     <Input
                         size="lg"

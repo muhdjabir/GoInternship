@@ -42,7 +42,7 @@ const LoginForm = () => {
                         label="Email"
                         id="email"
                         name="email"
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => setEmail(e.target.value.toLowerCase())}
                     />
                     <Input
                         type="password"
