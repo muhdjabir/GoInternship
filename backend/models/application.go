@@ -2,6 +2,7 @@ package models
 
 import (
 	"backend/database"
+	logging "backend/utils/log"
 	"errors"
 	"fmt"
 
@@ -36,6 +37,7 @@ func GetApplications() ([]Application, error) {
 
 func (application *Application) Create() (*Application, error) {
 	if err := database.Database.Create(&application).Error; err != nil {
+		logging.Error.Println(err.Error())
 		return nil, err
 	}
 	return application, nil
@@ -46,6 +48,7 @@ func GetApplicationByID(applicationid int) (Application, error) {
 	var application Application
 
 	if err := database.Database.First(&application, applicationid).Error; err != nil {
+		logging.Error.Println(err.Error())
 		return application, errors.New("Application not found")
 	}
 
@@ -62,6 +65,7 @@ func DeleteApplicationByID(applicationid int) (Application, error) {
 	var application Application
 
 	if err := database.Database.Delete(&Application{}, applicationid).Error; err != nil {
+		logging.Error.Println(err.Error())
 		return application, errors.New(("Application not found"))
 	}
 	return application, nil
@@ -70,9 +74,11 @@ func DeleteApplicationByID(applicationid int) (Application, error) {
 func UpdateApplicationByID(application Application, applicationid int) (Application, error) {
 	var updatedApplication Application
 	if err := database.Database.First(&updatedApplication, applicationid).Error; err != nil {
+		logging.Error.Println(err.Error())
 		return updatedApplication, errors.New("Application not found")
 	}
 	if err := database.Database.Model(&updatedApplication).Updates(application).Error; err != nil {
+		logging.Error.Println(err.Error())
 		return updatedApplication, err
 	}
 	return updatedApplication, nil

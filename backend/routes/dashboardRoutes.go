@@ -2,6 +2,7 @@ package routes
 
 import (
 	"backend/models"
+	logging "backend/utils/log"
 	"backend/utils/token"
 	"net/http"
 
@@ -19,14 +20,17 @@ type DashboardData struct {
 func GetUserDashboard(c *gin.Context) {
 	user_id, err := token.ExtractTokenID(c)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 	offerCount, rejectCount, pendingCount, err := models.GetApplicationsTallyByUID(int(user_id))
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 	companyCount, err := models.GetCompanyTallyByUID(int(user_id))
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 	sankey := models.GetProcessByUID(int(user_id))

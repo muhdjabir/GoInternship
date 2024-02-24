@@ -2,6 +2,7 @@ package models
 
 import (
 	"backend/database"
+	logging "backend/utils/log"
 	"backend/utils/token"
 	"errors"
 	"html"
@@ -49,18 +50,21 @@ func LoginCheck(email string, password string) (string, error) {
 	err = database.Database.Model(User{}).Where("email = ?", email).Take(&u).Error
 
 	if err != nil {
+		logging.Error.Println(err.Error())
 		return "", err
 	}
 
 	err = VerifyPassword(password, u.Password)
 
 	if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
+		logging.Error.Println(err.Error())
 		return "", err
 	}
 
 	token, err := token.GenerateToken(u.ID)
 
 	if err != nil {
+		logging.Error.Println(err.Error())
 		return "", err
 	}
 
@@ -71,6 +75,7 @@ func LoginCheck(email string, password string) (string, error) {
 func (u *User) SaveUser() (*User, error) {
 	err := database.Database.Create(&u).Error
 	if err != nil {
+		logging.Error.Println(err.Error())
 		return &User{}, err
 	}
 	return u, nil
@@ -80,6 +85,7 @@ func (u *User) SaveUser() (*User, error) {
 func (u *User) BeforeSave(*gorm.DB) error {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(u.Password), bcrypt.DefaultCost)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		return err
 	}
 	u.Password = string(hashedPassword)

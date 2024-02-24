@@ -2,6 +2,7 @@ package routes
 
 import (
 	"backend/models"
+	logging "backend/utils/log"
 	"net/http"
 	"strconv"
 
@@ -19,6 +20,7 @@ type CompanyInput struct {
 func GetAllCompanies(c *gin.Context) {
 	companies, err := models.GetCompanies()
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -29,11 +31,13 @@ func GetUserCompanies(c *gin.Context) {
 	idparam := c.Param("userid")
 	user_id, err := strconv.Atoi(idparam)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	companies, err := models.GetCompaniesByUID(user_id)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -44,6 +48,7 @@ func CreateCompany(c *gin.Context) {
 	var input CompanyInput
 
 	if err := c.ShouldBindJSON(&input); err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -59,6 +64,7 @@ func CreateCompany(c *gin.Context) {
 	newEntry, err := company.SaveCompany()
 
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 
@@ -69,11 +75,13 @@ func GetCompany(c *gin.Context) {
 	idparam := c.Param("companyid")
 	company_id, err := strconv.Atoi(idparam)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	company, err := models.GetCompanyByID(company_id)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -84,11 +92,13 @@ func DeleteCompany(c *gin.Context) {
 	idparam := c.Param("companyid")
 	company_id, err := strconv.Atoi(idparam)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	company, err := models.DeleteCompanyByID(company_id)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -99,6 +109,7 @@ func UpdateCompany(c *gin.Context) {
 	idparam := c.Param("companyid")
 	company_id, err := strconv.Atoi(idparam)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -106,6 +117,7 @@ func UpdateCompany(c *gin.Context) {
 	var input CompanyInput
 
 	if err := c.ShouldBindJSON(&input); err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}

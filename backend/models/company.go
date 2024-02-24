@@ -2,6 +2,7 @@ package models
 
 import (
 	"backend/database"
+	logging "backend/utils/log"
 	"errors"
 	"fmt"
 
@@ -20,6 +21,7 @@ type Company struct {
 func (company *Company) SaveCompany() (*Company, error) {
 	err := database.Database.Create(&company).Error
 	if err != nil {
+		logging.Error.Println(err.Error())
 		return &Company{}, err
 	}
 	return company, nil
@@ -37,6 +39,7 @@ func GetCompanyByID(companyid int) (Company, error) {
 	var company Company
 
 	if err := database.Database.First(&company, companyid).Error; err != nil {
+		logging.Error.Println(err.Error())
 		return company, errors.New("Company not found")
 	}
 
@@ -53,6 +56,7 @@ func DeleteCompanyByID(companyid int) (Company, error) {
 	var company Company
 
 	if err := database.Database.Delete(&Company{}, companyid).Error; err != nil {
+		logging.Error.Println(err.Error())
 		return company, errors.New(("Company not found"))
 	}
 	return company, nil
@@ -61,9 +65,11 @@ func DeleteCompanyByID(companyid int) (Company, error) {
 func UpdateCompanyByID(company Company, companyid int) (Company, error) {
 	var updatedCompany Company
 	if err := database.Database.First(&updatedCompany, companyid).Error; err != nil {
+		logging.Error.Println(err.Error())
 		return updatedCompany, errors.New("Company not found")
 	}
 	if err := database.Database.Model(&updatedCompany).Updates(company).Error; err != nil {
+		logging.Error.Println(err.Error())
 		return updatedCompany, err
 	}
 	return updatedCompany, nil
@@ -72,6 +78,7 @@ func UpdateCompanyByID(company Company, companyid int) (Company, error) {
 func GetCompanyTallyByUID(userid int) (int64, error) {
 	var companyCount int64
 	if err := database.Database.Model(&Company{}).Where("user_id = ?", userid).Count(&companyCount).Error; err != nil {
+		logging.Error.Println(err.Error())
 		return companyCount, errors.New("error retrieving count")
 	}
 	return companyCount, nil

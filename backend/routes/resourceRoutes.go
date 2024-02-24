@@ -2,6 +2,7 @@ package routes
 
 import (
 	"backend/models"
+	logging "backend/utils/log"
 	"net/http"
 	"strconv"
 
@@ -18,6 +19,7 @@ type ResourceInput struct {
 func GetAllResources(c *gin.Context) {
 	resources, err := models.GetResources()
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -28,11 +30,13 @@ func GetUserResources(c *gin.Context) {
 	idparam := c.Param("userid")
 	user_id, err := strconv.Atoi(idparam)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	resources, err := models.GetResourcesByUID(user_id)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -43,6 +47,7 @@ func CreateResource(c *gin.Context) {
 	var input ResourceInput
 
 	if err := c.ShouldBindJSON(&input); err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -57,6 +62,7 @@ func CreateResource(c *gin.Context) {
 	newEntry, err := resource.SaveResource()
 
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 
@@ -67,11 +73,13 @@ func GetResource(c *gin.Context) {
 	idparam := c.Param("resourceid")
 	resource_id, err := strconv.Atoi(idparam)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	resource, err := models.GetResourceByID(resource_id)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -82,11 +90,13 @@ func DeleteResource(c *gin.Context) {
 	idparam := c.Param("resourceid")
 	resource_id, err := strconv.Atoi(idparam)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	resource, err := models.DeleteResourceByID(resource_id)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -97,6 +107,7 @@ func UpdateResource(c *gin.Context) {
 	idparam := c.Param("resourceid")
 	resource_id, err := strconv.Atoi(idparam)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -104,6 +115,7 @@ func UpdateResource(c *gin.Context) {
 	var input ResourceInput
 
 	if err := c.ShouldBindJSON(&input); err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -118,6 +130,7 @@ func UpdateResource(c *gin.Context) {
 	updatedEntry, err := models.UpdateResourceByID(resource, resource_id)
 
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 

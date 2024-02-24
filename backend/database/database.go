@@ -1,6 +1,7 @@
 package database
 
 import (
+	logging "backend/utils/log"
 	"fmt"
 	"os"
 
@@ -21,6 +22,7 @@ func Connect() {
 	Database, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
+		logging.Error.Println(err.Error())
 		panic(err)
 	} else {
 		fmt.Println("Successfully connected to the database")

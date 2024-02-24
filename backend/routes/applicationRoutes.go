@@ -2,6 +2,7 @@ package routes
 
 import (
 	"backend/models"
+	logging "backend/utils/log"
 	"net/http"
 	"strconv"
 
@@ -24,6 +25,7 @@ type ApplicationInput struct {
 func GetAllApplications(c *gin.Context) {
 	applications, err := models.GetApplications()
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -33,6 +35,7 @@ func GetAllApplications(c *gin.Context) {
 func CreateApplication(c *gin.Context) {
 	var input ApplicationInput
 	if err := c.ShouldBindJSON(&input); err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -50,6 +53,7 @@ func CreateApplication(c *gin.Context) {
 
 	newApplication, err := application.Create()
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
@@ -61,11 +65,13 @@ func GetApplication(c *gin.Context) {
 	idparam := c.Param("applicationid")
 	application_id, err := strconv.Atoi(idparam)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	application, err := models.GetApplicationByID(application_id)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -76,11 +82,13 @@ func GetUserApplications(c *gin.Context) {
 	idparam := c.Param("userid")
 	user_id, err := strconv.Atoi(idparam)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	applications, err := models.GetApplicationsByUID(user_id)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -91,11 +99,13 @@ func DeleteApplication(c *gin.Context) {
 	idparam := c.Param("applicationid")
 	application_id, err := strconv.Atoi(idparam)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	application, err := models.DeleteApplicationByID(application_id)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -106,6 +116,7 @@ func UpdateApplication(c *gin.Context) {
 	idparam := c.Param("applicationid")
 	application_id, err := strconv.Atoi(idparam)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -113,6 +124,7 @@ func UpdateApplication(c *gin.Context) {
 	var input ApplicationInput
 
 	if err := c.ShouldBindJSON(&input); err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -131,6 +143,7 @@ func UpdateApplication(c *gin.Context) {
 	updatedEntry, err := models.UpdateApplicationByID(application, application_id)
 
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 

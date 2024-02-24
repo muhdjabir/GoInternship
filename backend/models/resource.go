@@ -2,6 +2,7 @@ package models
 
 import (
 	"backend/database"
+	logging "backend/utils/log"
 	"errors"
 
 	// "html"
@@ -22,6 +23,7 @@ type Resource struct {
 func (resource *Resource) SaveResource() (*Resource, error) {
 	err := database.Database.Create(&resource).Error
 	if err != nil {
+		logging.Error.Println(err.Error())
 		return &Resource{}, err
 	}
 	return resource, nil
@@ -45,6 +47,7 @@ func GetResourceByID(resourceid int) (Resource, error) {
 	var resource Resource
 
 	if err := database.Database.First(&resource, resourceid).Error; err != nil {
+		logging.Error.Println(err.Error())
 		return resource, errors.New("Resource not found")
 	}
 
@@ -55,6 +58,7 @@ func DeleteResourceByID(resourceid int) (Resource, error) {
 	var resource Resource
 
 	if err := database.Database.Delete(&Resource{}, resourceid).Error; err != nil {
+		logging.Error.Println(err.Error())
 		return resource, errors.New(("Resource not found"))
 	}
 	return resource, nil
@@ -63,9 +67,11 @@ func DeleteResourceByID(resourceid int) (Resource, error) {
 func UpdateResourceByID(resource Resource, resourceid int) (Resource, error) {
 	var updatedResource Resource
 	if err := database.Database.First(&updatedResource, resourceid).Error; err != nil {
+		logging.Error.Println(err.Error())
 		return updatedResource, errors.New("Resource not found")
 	}
 	if err := database.Database.Model(&updatedResource).Updates(resource).Error; err != nil {
+		logging.Error.Println(err.Error())
 		return updatedResource, err
 	}
 	return updatedResource, nil

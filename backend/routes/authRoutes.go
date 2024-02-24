@@ -2,6 +2,7 @@ package routes
 
 import (
 	"backend/models"
+	logging "backend/utils/log"
 	"backend/utils/token"
 	"net/http"
 
@@ -22,11 +23,13 @@ type LoginInput struct {
 func CurrentUser(c *gin.Context) {
 	user_id, err := token.ExtractTokenID(c)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 	u, err := models.GetUserByID(user_id)
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -37,6 +40,7 @@ func Register(c *gin.Context) {
 	var input RegisterInput
 
 	if err := c.ShouldBindJSON(&input); err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -50,6 +54,7 @@ func Register(c *gin.Context) {
 	_, err := u.SaveUser()
 
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"message": "Failed", "error": err.Error()})
 		return
 	}
@@ -61,6 +66,7 @@ func Login(c *gin.Context) {
 	var input LoginInput
 
 	if err := c.ShouldBindJSON(&input); err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -72,6 +78,7 @@ func Login(c *gin.Context) {
 	token, err := models.LoginCheck(u.Email, u.Password)
 
 	if err != nil {
+		logging.Error.Println(err.Error())
 		c.JSON(http.StatusBadRequest, gin.H{"message": "Username or password is incorrect.", "error": err.Error()})
 		return
 	}
