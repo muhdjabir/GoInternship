@@ -2,12 +2,12 @@ package main
 
 import (
 	"backend/database"
+	"backend/middlewares"
 	"backend/models"
 	"backend/routes"
 	cors "backend/utils/http"
 	"context"
 	"log"
-	"os"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -27,14 +27,9 @@ func init() {
 	log.Printf("Auth cold start")
 	router := gin.Default()
 	router.Use(cors.CORSMiddleware())
-	public := router.Group("/api")
-	public.GET("/", func(ctx *gin.Context) {
-		ctx.JSON(200, gin.H{
-			"message": os.Getenv("message"),
-		})
-	})
-	public.POST("/register", routes.Register)
-	public.POST("/login", routes.Login)
+	protected := router.Group("/api/admin")
+	protected.Use(middlewares.JwtAuthMiddleware())
+	protected.GET("/user", routes.CurrentUser)
 
 	ginLambda = ginadapter.New(router)
 }

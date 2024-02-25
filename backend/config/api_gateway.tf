@@ -31,7 +31,7 @@ resource "aws_apigatewayv2_stage" "lambdastage" {
 
 resource "aws_apigatewayv2_route" "lambda_get_route" {
   api_id    = aws_apigatewayv2_api.lambdagateway.id
-  route_key = "GET /api/hello-world"
+  route_key = "ANY /api"
   target    = "integrations/${aws_apigatewayv2_integration.lambda_get_integration.id}"
 }
 
@@ -41,13 +41,35 @@ resource "aws_apigatewayv2_integration" "lambda_get_integration" {
   api_id               = aws_apigatewayv2_api.lambdagateway.id
   integration_type     = "AWS_PROXY"
   integration_method   = "POST"
-  integration_uri      = aws_lambda_function.hello_world.invoke_arn
+  integration_uri      = aws_lambda_function.auth.invoke_arn
   passthrough_behavior = "WHEN_NO_MATCH"
 }
 
 resource "aws_lambda_permission" "api_gw_get" {
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.hello_world.function_name
+  function_name = aws_lambda_function.auth.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.lambdagateway.execution_arn}/*/*"
+}
+
+resource "aws_apigatewayv2_route" "lambda_get_user_route" {
+  api_id    = aws_apigatewayv2_api.lambdagateway.id
+  route_key = "GET /api/admin"
+  target    = "integrations/${aws_apigatewayv2_integration.lambda_get_integration.id}"
+}
+
+resource "aws_apigatewayv2_integration" "lambda_get_user_integration" {
+  description          = "HTTP Integration HTTP GET to Lambda"
+  api_id               = aws_apigatewayv2_api.lambdagateway.id
+  integration_type     = "AWS_PROXY"
+  integration_method   = "POST"
+  integration_uri      = aws_lambda_function.get_user.invoke_arn
+  passthrough_behavior = "WHEN_NO_MATCH"
+}
+
+resource "aws_lambda_permission" "api_gw_get_user" {
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.get_user.function_name
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_apigatewayv2_api.lambdagateway.execution_arn}/*/*"
 }
