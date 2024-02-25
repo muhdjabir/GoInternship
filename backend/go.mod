@@ -14,6 +14,7 @@ require (
 )
 
 require (
+	github.com/aws/aws-lambda-go v1.46.0
 	github.com/bytedance/sonic v1.9.1 // indirect
 	github.com/chenzhuoyu/base64x v0.0.0-20221115062448-fe3a3abad311 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
