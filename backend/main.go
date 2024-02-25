@@ -46,7 +46,7 @@ func setRoutes() {
 
 	// Public Routes
 	public := router.Group("/api")
-	public.GET("/", func(c *gin.Context) {
+	public.GET("", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"message": "Welcome to GoInternship Golang Web App"})
 	})
 	public.POST("/register", routes.Register)
