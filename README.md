@@ -3,7 +3,7 @@
 I am Muhammad Jabir, I decided to come up with GoInternship because I wanted to pick up Golang for an internship that I would be embarking on and wanted to create something I would personally use. Thus, I created this Internship Applications tracker website that allows users to list their companies, update their applications, view community resources and view a nice dashboard regarding their applications.
 
 ## Deployment
-https://go-internship.vercel.app/
+https://go-internship.vercel.app/ (In the middle of migrating backend)
 
 ## Issues
 
