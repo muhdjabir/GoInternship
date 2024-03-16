@@ -54,7 +54,7 @@ resource "aws_lambda_permission" "api_gw_get" {
 
 resource "aws_apigatewayv2_route" "lambda_get_user_route" {
   api_id    = aws_apigatewayv2_api.lambdagateway.id
-  route_key = "GET /api/admin"
+  route_key = "GET /api/admin/user"
   target    = "integrations/${aws_apigatewayv2_integration.lambda_get_integration.id}"
 }
 
