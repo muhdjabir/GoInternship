@@ -1,5 +1,5 @@
 #!/bin/bash
-terraform apply -var="message=Hooray!" \
+terraform apply \
     -var="DB_HOST=$DB_HOST" \
     -var="DB_USER=$DB_USER" \
     -var="DB_PASSWORD=$DB_PASSWORD" \

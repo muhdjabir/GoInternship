@@ -7,7 +7,6 @@ import (
 	cors "backend/utils/http"
 	"context"
 	"log"
-	"os"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -28,9 +27,9 @@ func init() {
 	router := gin.Default()
 	router.Use(cors.CORSMiddleware())
 	public := router.Group("/api")
-	public.GET("/", func(ctx *gin.Context) {
+	public.GET("/healthz", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{
-			"message": os.Getenv("message"),
+			"status": "healthy",
 		})
 	})
 	public.POST("/register", routes.Register)
