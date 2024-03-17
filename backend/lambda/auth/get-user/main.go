@@ -28,13 +28,15 @@ func init() {
 	router := gin.Default()
 	router.Use(cors.CORSMiddleware())
 	protected := router.Group("/api/admin/user")
+	public := router.Group("/api/admin/company")
 	protected.Use(middlewares.JwtAuthMiddleware())
-	protected.GET("/healthz", func(ctx *gin.Context) {
+	protected.Use(middlewares.JwtAuthMiddleware())
+	public.GET("/healthz", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{
 			"status": "healthy",
 		})
 	})
-	protected.GET("", routes.CurrentUser)
+	protected.GET("/", routes.CurrentUser)
 
 	ginLambda = ginadapter.New(router)
 }

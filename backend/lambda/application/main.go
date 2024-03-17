@@ -28,16 +28,17 @@ func init() {
 	router := gin.Default()
 	router.Use(cors.CORSMiddleware())
 	protected := router.Group("/api/admin/application")
+	public := router.Group("/api/admin/application")
 	protected.Use(middlewares.JwtAuthMiddleware())
-	protected.GET("/healthz", func(ctx *gin.Context) {
+	public.GET("/healthz", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{
 			"status": "healthy",
 		})
 	})
-	protected.GET("", routes.GetAllApplications)
+	protected.GET("/", routes.GetAllApplications)
 	protected.GET("/:applicationid", routes.GetApplication)
 	protected.GET("/user/:userid", routes.GetUserApplications)
-	protected.POST("", routes.CreateApplication)
+	protected.POST("/", routes.CreateApplication)
 	protected.DELETE("/:applicationid", routes.DeleteApplication)
 	protected.PATCH("/:applicationid", routes.UpdateApplication)
 

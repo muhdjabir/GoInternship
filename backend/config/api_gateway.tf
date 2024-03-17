@@ -31,7 +31,7 @@ resource "aws_apigatewayv2_stage" "lambdastage" {
 
 resource "aws_apigatewayv2_route" "lambda_get_route" {
   api_id    = aws_apigatewayv2_api.lambdagateway.id
-  route_key = "ANY /api"
+  route_key = "ANY /api/auth/{proxy+}"
   target    = "integrations/${aws_apigatewayv2_integration.lambda_get_integration.id}"
 }
 
@@ -54,7 +54,7 @@ resource "aws_lambda_permission" "api_gw_get" {
 
 resource "aws_apigatewayv2_route" "lambda_get_user_route" {
   api_id    = aws_apigatewayv2_api.lambdagateway.id
-  route_key = "GET /api/admin/user"
+  route_key = "GET /api/admin/user/{proxy+}"
   target    = "integrations/${aws_apigatewayv2_integration.lambda_get_user_integration.id}"
 }
 
@@ -76,7 +76,7 @@ resource "aws_lambda_permission" "api_gw_get_user" {
 
 resource "aws_apigatewayv2_route" "lambda_application_route" {
   api_id    = aws_apigatewayv2_api.lambdagateway.id
-  route_key = "ANY /api/admin/application"
+  route_key = "ANY /api/admin/application/{proxy+}"
   target    = "integrations/${aws_apigatewayv2_integration.lambda_application_integration.id}"
 }
 
@@ -98,7 +98,7 @@ resource "aws_lambda_permission" "api_gw_application" {
 
 resource "aws_apigatewayv2_route" "lambda_company_route" {
   api_id    = aws_apigatewayv2_api.lambdagateway.id
-  route_key = "ANY /api/admin/company"
+  route_key = "ANY /api/admin/company/{proxy+}"
   target    = "integrations/${aws_apigatewayv2_integration.lambda_company_integration.id}"
 }
 
@@ -120,7 +120,7 @@ resource "aws_lambda_permission" "api_gw_company" {
 
 resource "aws_apigatewayv2_route" "lambda_dashboard_route" {
   api_id    = aws_apigatewayv2_api.lambdagateway.id
-  route_key = "ANY /api/admin/dashboard"
+  route_key = "ANY /api/admin/dashboard/{proxy+}"
   target    = "integrations/${aws_apigatewayv2_integration.lambda_dashboard_integration.id}"
 }
 
@@ -142,7 +142,7 @@ resource "aws_lambda_permission" "api_gw_dashboard" {
 
 resource "aws_apigatewayv2_route" "lambda_resource_route" {
   api_id    = aws_apigatewayv2_api.lambdagateway.id
-  route_key = "ANY /api/admin/resource"
+  route_key = "ANY /api/admin/resource/{proxy+}"
   target    = "integrations/${aws_apigatewayv2_integration.lambda_resource_integration.id}"
 }
 

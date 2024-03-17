@@ -26,7 +26,7 @@ func init() {
 	log.Printf("Auth cold start")
 	router := gin.Default()
 	router.Use(cors.CORSMiddleware())
-	public := router.Group("/api")
+	public := router.Group("/api/auth")
 	public.GET("/healthz", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{
 			"status": "healthy",

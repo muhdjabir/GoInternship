@@ -18,16 +18,20 @@ variable "API_SECRET" {
   type = string
 }
 
+variable "TOKEN_HOUR_LIFESPAN" {
+  type = string
+}
+
 data "archive_file" "auth" {
   # depends_on = [null_resource.function_binary]
   type        = "zip"
-  source_file = "${path.module}/../bin/hello_world/bootstrap"
+  source_file = "${path.module}/../bin/auth/bootstrap"
   output_path = "${path.module}/../zips/auth.zip"
 }
 
 resource "aws_lambda_function" "auth" {
   depends_on    = [data.archive_file.auth]
-  function_name = "example_lambda_function"
+  function_name = "auth"
   role          = aws_iam_role.lambda_role.arn
   handler       = "main"
   runtime       = "provided.al2023"
@@ -45,8 +49,8 @@ resource "aws_lambda_function" "auth" {
 data "archive_file" "get_user" {
   # depends_on = [null_resource.function_binary]
   type        = "zip"
-  source_file = "${path.module}/../bin/get_user/bootstrap"
-  output_path = "${path.module}/../zips/get_user.zip"
+  source_file = "${path.module}/../bin/get-user/bootstrap"
+  output_path = "${path.module}/../zips/get-user.zip"
 }
 
 resource "aws_lambda_function" "get_user" {
@@ -55,14 +59,15 @@ resource "aws_lambda_function" "get_user" {
   role          = aws_iam_role.lambda_role.arn
   handler       = "main"
   runtime       = "provided.al2023"
-  filename      = "${path.module}/../zips/get_user.zip"
+  filename      = "${path.module}/../zips/get-user.zip"
   environment {
     variables = {
-      "DB_HOST"     = var.DB_HOST,
-      "DB_USER"     = var.DB_USER,
-      "DB_PASSWORD" = var.DB_PASSWORD,
-      "DB_NAME"     = var.DB_NAME,
-      "API_SECRET"  = var.API_SECRET
+      "TOKEN_HOUR_LIFESPAN" = var.TOKEN_HOUR_LIFESPAN,
+      "DB_HOST"             = var.DB_HOST,
+      "DB_USER"             = var.DB_USER,
+      "DB_PASSWORD"         = var.DB_PASSWORD,
+      "DB_NAME"             = var.DB_NAME,
+      "API_SECRET"          = var.API_SECRET
     }
   }
 }
@@ -83,11 +88,12 @@ resource "aws_lambda_function" "application" {
   filename      = "${path.module}/../zips/application.zip"
   environment {
     variables = {
-      "DB_HOST"     = var.DB_HOST,
-      "DB_USER"     = var.DB_USER,
-      "DB_PASSWORD" = var.DB_PASSWORD,
-      "DB_NAME"     = var.DB_NAME,
-      "API_SECRET"  = var.API_SECRET
+      "TOKEN_HOUR_LIFESPAN" = var.TOKEN_HOUR_LIFESPAN,
+      "DB_HOST"             = var.DB_HOST,
+      "DB_USER"             = var.DB_USER,
+      "DB_PASSWORD"         = var.DB_PASSWORD,
+      "DB_NAME"             = var.DB_NAME,
+      "API_SECRET"          = var.API_SECRET
     }
   }
 }
@@ -108,11 +114,12 @@ resource "aws_lambda_function" "company" {
   filename      = "${path.module}/../zips/company.zip"
   environment {
     variables = {
-      "DB_HOST"     = var.DB_HOST,
-      "DB_USER"     = var.DB_USER,
-      "DB_PASSWORD" = var.DB_PASSWORD,
-      "DB_NAME"     = var.DB_NAME,
-      "API_SECRET"  = var.API_SECRET
+      "TOKEN_HOUR_LIFESPAN" = var.TOKEN_HOUR_LIFESPAN,
+      "DB_HOST"             = var.DB_HOST,
+      "DB_USER"             = var.DB_USER,
+      "DB_PASSWORD"         = var.DB_PASSWORD,
+      "DB_NAME"             = var.DB_NAME,
+      "API_SECRET"          = var.API_SECRET
     }
   }
 }
@@ -133,11 +140,12 @@ resource "aws_lambda_function" "dashboard" {
   filename      = "${path.module}/../zips/dashboard.zip"
   environment {
     variables = {
-      "DB_HOST"     = var.DB_HOST,
-      "DB_USER"     = var.DB_USER,
-      "DB_PASSWORD" = var.DB_PASSWORD,
-      "DB_NAME"     = var.DB_NAME,
-      "API_SECRET"  = var.API_SECRET
+      "TOKEN_HOUR_LIFESPAN" = var.TOKEN_HOUR_LIFESPAN,
+      "DB_HOST"             = var.DB_HOST,
+      "DB_USER"             = var.DB_USER,
+      "DB_PASSWORD"         = var.DB_PASSWORD,
+      "DB_NAME"             = var.DB_NAME,
+      "API_SECRET"          = var.API_SECRET
     }
   }
 }
@@ -158,11 +166,12 @@ resource "aws_lambda_function" "resource" {
   filename      = "${path.module}/../zips/resource.zip"
   environment {
     variables = {
-      "DB_HOST"     = var.DB_HOST,
-      "DB_USER"     = var.DB_USER,
-      "DB_PASSWORD" = var.DB_PASSWORD,
-      "DB_NAME"     = var.DB_NAME,
-      "API_SECRET"  = var.API_SECRET
+      "TOKEN_HOUR_LIFESPAN" = var.TOKEN_HOUR_LIFESPAN,
+      "DB_HOST"             = var.DB_HOST,
+      "DB_USER"             = var.DB_USER,
+      "DB_PASSWORD"         = var.DB_PASSWORD,
+      "DB_NAME"             = var.DB_NAME,
+      "API_SECRET"          = var.API_SECRET
     }
   }
 }
