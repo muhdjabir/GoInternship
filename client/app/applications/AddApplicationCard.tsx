@@ -50,7 +50,7 @@ export default function AddApplicationCard({
     const handleSubmit = async () => {
         console.log(role, platform, assessment);
         const response = await fetch(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/application`,
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/application/`,
             {
                 method: "POST",
                 headers: {

@@ -25,7 +25,7 @@ export const useLogin = () => {
                 Authorization: `Bearer ${token}`,
             }
         });
-    
+
         const json = await response.json();
         const data = json.data
         if (!response.ok) {
@@ -50,10 +50,10 @@ export const useLogin = () => {
         setIsLoading(true);
         setError("");
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/login`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({email, password})
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
         });
         // const response = await fetch(`http://127.0.0.1:8080/api/`);
         const json = await response.json();
@@ -75,5 +75,5 @@ export const useLogin = () => {
             router.push("/dashboard");
         }
     }
-    return { login, isLoading, error};
+    return { login, isLoading, error };
 }

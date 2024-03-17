@@ -14,10 +14,10 @@ export const useSignup = () => {
         setIsLoading(true);
         setError("");
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/register`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({email, password, username})
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password, username })
         });
         const json = await response.json();
 
@@ -26,10 +26,10 @@ export const useSignup = () => {
             setError("Account already exists");
         }
         if (response.ok) {
-                await login(email, password);
-                setIsLoading(false);
-                setSuccess("Account successfully created");
-            }
+            await login(email, password);
+            setIsLoading(false);
+            setSuccess("Account successfully created");
         }
-    return { signup, isLoading, error, success};
+    }
+    return { signup, isLoading, error, success };
 }

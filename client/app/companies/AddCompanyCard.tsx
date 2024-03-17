@@ -43,7 +43,7 @@ export default function AddCompanyCard({
     const handleSubmit = async () => {
         console.log(name, industry, description, url);
         const response = await fetch(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/company`,
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/company/`,
             {
                 method: "POST",
                 headers: {

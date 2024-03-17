@@ -36,7 +36,7 @@ export default function Dashboard() {
         const fetchCompany = async () => {
             console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}`);
             const response = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/dashboard`,
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/dashboard/`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

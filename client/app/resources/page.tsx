@@ -29,7 +29,7 @@ export default function Resource() {
         const fetchResource = async () => {
             console.log(`${process.env.NEXT_PUBLIC_BACKEND_URL}`);
             const response = await fetch(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/resource`,
+                `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/resource/`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

@@ -29,7 +29,7 @@ export default function AddResourceCard({
     const handleSubmit = async () => {
         console.log(title, url, description);
         const response = await fetch(
-            `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/resource`,
+            `${process.env.NEXT_PUBLIC_BACKEND_URL}/admin/resource/`,
             {
                 method: "POST",
                 headers: {
