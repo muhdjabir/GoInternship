@@ -38,10 +38,12 @@ resource "aws_lambda_function" "auth" {
   filename      = "${path.module}/../zips/auth.zip"
   environment {
     variables = {
-      "DB_HOST"     = var.DB_HOST,
-      "DB_USER"     = var.DB_USER,
-      "DB_PASSWORD" = var.DB_PASSWORD,
-      "DB_NAME"     = var.DB_NAME,
+      "TOKEN_HOUR_LIFESPAN" = var.TOKEN_HOUR_LIFESPAN,
+      "DB_HOST"             = var.DB_HOST,
+      "DB_USER"             = var.DB_USER,
+      "DB_PASSWORD"         = var.DB_PASSWORD,
+      "DB_NAME"             = var.DB_NAME,
+      "API_SECRET"          = var.API_SECRET
     }
   }
 }

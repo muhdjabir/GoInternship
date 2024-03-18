@@ -33,8 +33,9 @@ func setRoutes() {
 	public.GET("", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"message": "Welcome to GoInternship Golang Web App"})
 	})
-	public.POST("/register", routes.Register)
-	public.POST("/login", routes.Login)
+	auth := router.Group("/api/auth")
+	auth.POST("/register", routes.Register)
+	auth.POST("/login", routes.Login)
 
 	// Protected Routes
 	protected := router.Group("/api/admin")
