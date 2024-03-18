@@ -19,8 +19,8 @@ While applying for internships, I realised that there were many different ways t
 | ---------- | ------------------------------ |
 | Frontend   | Next(Typescript), Material Tailwind |
 | Backend    | Golang            |
-| Database   | PostgresQL                        |
-| Deployment | Vercel, Docker, AWS EC2, API Gateway                         |
+| Database   | AWS RDS (PostgresQL)                        |
+| Deployment | Vercel, AWS Lambda, API Gateway                         |
 
 ## User Stories
 
